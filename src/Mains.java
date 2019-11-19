@@ -206,10 +206,10 @@ public class Mains {
       lblNewLabel_2.setBounds(38, 101, 63, 15);
       Comparepanel.add(lblNewLabel_2);
       
-      JPanel panel_2 = new JPanel();
-      panel_2.setBounds(360, 131, 228, 200);
-      panel_2.setBorder(BorderFactory.createLineBorder(Color.red));
-      Comparepanel.add(panel_2);
+      JPanel second_comparelabel = new JPanel();
+      second_comparelabel.setBounds(382, 131, 228, 200);
+      second_comparelabel.setBorder(BorderFactory.createLineBorder(Color.red));
+      Comparepanel.add(second_comparelabel);
       
       textField_2 = new JTextField();
       textField_2.setBounds(113, 61, 96, 21);
@@ -238,6 +238,14 @@ public class Mains {
       textField_5.setBounds(440, 98, 96, 21);
       Comparepanel.add(textField_5);
       textField_5.setColumns(10);
+      
+      JButton btnSet = new JButton("적용");
+      btnSet.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      	}
+      });
+      btnSet.setBounds(273, 187, 97, 23);
+      Comparepanel.add(btnSet);
       
       Comparepanel.setVisible(false); //Compare panel 페이지 감추기 
 
