@@ -1,4 +1,5 @@
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 
 public class Mains {
 
@@ -31,6 +33,7 @@ public class Mains {
     * Launch the application.
     */
    public static void main(String[] args) {
+	  
       EventQueue.invokeLater(new Runnable() {
          public void run() {
             try {
@@ -48,6 +51,7 @@ public class Mains {
     */
    public Mains() {
       initialize();
+      
    }
 
    /**
@@ -58,8 +62,6 @@ public class Mains {
       frame.setBounds(100, 100, 650, 420);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.getContentPane().setLayout(null);
-      
-      
       
       
       final JPanel Mainpanel = new JPanel(); // main Panel
@@ -74,7 +76,7 @@ public class Mains {
       Mainpanel.add(tilteLabel);
       
       // Graph Ãâ·Â
-      JPanel Graphpanel = new JPanel();
+      JPanel Graphpanel= new JPanel();
       Graphpanel.setBorder(BorderFactory.createLineBorder(Color.red));
       Graphpanel.setBounds(27, 48, 447, 214);
       Mainpanel.add(Graphpanel);
@@ -136,7 +138,6 @@ public class Mains {
         JComboBox comboBox = new JComboBox(Arealist);
         comboBox.setBounds(96, 317, 116, 19);
         Mainpanel.add(comboBox);
-      
         
         
         
@@ -286,4 +287,9 @@ public class Mains {
       }); 
       
    }
+
+private void MainPanel() {
+	// TODO Auto-generated method stub
+	
+}
 }
