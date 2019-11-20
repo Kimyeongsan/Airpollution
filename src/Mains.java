@@ -206,10 +206,10 @@ public class Mains {
       lblNewLabel_2.setBounds(38, 101, 63, 15);
       Comparepanel.add(lblNewLabel_2);
       
-      JPanel second_comparelabel = new JPanel();
-      second_comparelabel.setBounds(382, 131, 228, 200);
-      second_comparelabel.setBorder(BorderFactory.createLineBorder(Color.red));
-      Comparepanel.add(second_comparelabel);
+      JPanel second_comparGraph = new JPanel();
+      second_comparGraph.setBounds(382, 131, 228, 200);
+      second_comparGraph.setBorder(BorderFactory.createLineBorder(Color.red));
+      Comparepanel.add(second_comparGraph);
       
       textField_2 = new JTextField();
       textField_2.setBounds(113, 61, 96, 21);
