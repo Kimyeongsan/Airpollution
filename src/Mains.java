@@ -3,10 +3,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-
 
 public class Mains {
 
@@ -68,6 +64,72 @@ public class Mains {
 		PollutionLabel.setBounds(118, 10, 393, 28);
 		Pollutionpanel.add(PollutionLabel);
 
+		class Draw_M_Graph1 extends JPanel{
+			//변수 데이터 여기에 선언
+					int NO2=100;
+					int OZ=70;
+					int CO2=32;
+					int SO2=22;
+					int Fd=45;
+					int Ud=100;
+					
+					//대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
+	
+					public  void setNO2(int x) {
+						this.NO2=x;
+					}
+					public  void setOZ(int x) {
+						this.OZ=x;
+					}
+					public  void setCO2(int x) {
+						this.CO2=x;
+					}
+					public  void setSO2(int x) {
+						this.SO2=x;
+					}
+					public  void setFd(int x) {
+						this.Fd=x;
+					}
+					public  void setUd(int x) {
+						this.Ud=x;
+					}
+				
+					@Override
+					public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
+						super.paintComponent(g);
+						
+						
+						g.setColor(Color.BLACK);//글자
+						g.drawString("NO2", 5,20);//내용,x좌표,y좌표
+						g.setColor(Color.ORANGE);
+						g.fillRect(80, 7, NO2, 20);
+						
+						g.setColor(Color.BLACK);//글자
+						g.drawString("OZ", 5, 50);//내용,x좌표,y좌표
+						g.setColor(Color.GREEN);
+						g.fillRect(80, 37, OZ, 20);
+						
+						g.setColor(Color.BLACK);//글자
+						g.drawString("CO2", 5,80);//내용,x좌표,y좌표
+						g.setColor(Color.ORANGE);
+						g.fillRect(80, 67, CO2, 20);
+						
+						g.setColor(Color.BLACK);//글자
+						g.drawString("SO2", 5,110);//내용,x좌표,y좌표
+						g.setColor(Color.GREEN);
+						g.fillRect(80, 97, SO2, 20);
+						
+						g.setColor(Color.BLACK);//글자
+						g.drawString("Fd", 5,140);//내용,x좌표,y좌표
+						g.setColor(Color.ORANGE);
+						g.fillRect(80, 127, Fd, 20);
+						
+						g.setColor(Color.BLACK);//글자
+						g.drawString("Ud", 5,170);//내용,x좌표,y좌표
+						g.setColor(Color.GREEN);
+						g.fillRect(80, 157, Ud, 20);
+					}
+				}
 		// 메인 화면 패널
 		final JPanel Mainpanel = new JPanel();
 		Mainpanel.setBackground(new Color(225, 240, 255));
@@ -83,12 +145,22 @@ public class Mains {
 		tilteLabel.setBounds(180, 10, 270, 28);
 		Mainpanel.add(tilteLabel);
 
-		// Graph 출력
-		JPanel Graphpanel = new JPanel();
+		// Graph 출력/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JPanel Graphpanel = new Draw_M_Graph1();
 		Graphpanel.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
 		Graphpanel.setBounds(27, 48, 447, 214);
 		Mainpanel.add(Graphpanel);
-
+		//수정 테스트
+		///*
+		((Draw_M_Graph1) Graphpanel).setNO2(22);//쉬파꺼 이렇게 수정하면 한방이네
+		((Draw_M_Graph1) Graphpanel).setOZ(75);
+		((Draw_M_Graph1) Graphpanel).setCO2(140);
+		((Draw_M_Graph1) Graphpanel).setSO2(25);
+		((Draw_M_Graph1) Graphpanel).setFd(155);
+		((Draw_M_Graph1) Graphpanel).setUd(130);
+		//*/
+		
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JLabel lblDay = new JLabel("날짜 입력");
 		lblDay.setBounds(27, 288, 57, 15);
 		Mainpanel.add(lblDay);
@@ -246,6 +318,8 @@ class Draw_C_Graph1 extends JPanel{
 			
 			int Fd=45;
 			int Ud=100;
+			
+			//대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
 			public  void setNO2(int x) {
 				//this.NO2=x;
 			}
