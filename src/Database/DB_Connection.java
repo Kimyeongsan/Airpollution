@@ -7,9 +7,10 @@ import java.sql.SQLException;
 public class DB_Connection {
 	public Connection getConnection(){
 		Connection connection=null;
+		String url = "jdbc:mysql://localhost:3306/pollution_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db","root", "root");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection(url,"root", "rhror123!");
 
 			
 		} catch (ClassNotFoundException e) {

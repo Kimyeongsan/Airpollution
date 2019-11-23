@@ -151,10 +151,11 @@ public class Mains {
 		Graphpanel.setBounds(27, 48, 447, 214);
 		Mainpanel.add(Graphpanel);
 		//수정 테스트
+		//왜 깃에 안올라가지
 		///*
 		((Draw_M_Graph1) Graphpanel).setNO2(22);//쉬파꺼 이렇게 수정하면 한방이네
 		((Draw_M_Graph1) Graphpanel).setOZ(75);
-		((Draw_M_Graph1) Graphpanel).setCO2(140);
+		((Draw_M_Graph1) Graphpanel).setCO2(143);
 		((Draw_M_Graph1) Graphpanel).setSO2(25);
 		((Draw_M_Graph1) Graphpanel).setFd(155);
 		((Draw_M_Graph1) Graphpanel).setUd(130);
