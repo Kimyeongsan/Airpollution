@@ -49,20 +49,6 @@ public class Mains {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.getContentPane().setLayout(null);
       
-      //지역별 오염도 비교 패널
-      final JPanel Pollutionpanel = new JPanel(); // Pollution panel 화면
-      Pollutionpanel.setBounds(0, 0, 636, 360);
-      frame.getContentPane().add(Pollutionpanel);
-      Pollutionpanel.setLayout(null);
-      
-      //미세먼지 지역도 농도 비교 패널 타이틀
-      JLabel PollutionLabel = new JLabel("Local Pollution degree of risk");
-      PollutionLabel.setFont(new Font("Arial", Font.BOLD, 25));
-      PollutionLabel.setForeground(Color.BLUE);
-      PollutionLabel.setHorizontalAlignment(JLabel.CENTER);
-      PollutionLabel.setBounds(118, 10, 393, 28);
-      Pollutionpanel.add(PollutionLabel);
-      
       
       //메인 화면 패널
       final JPanel Mainpanel = new JPanel();
@@ -95,27 +81,98 @@ public class Mains {
     	  MonthList[m - 1] = Integer.toString(m) + "월";
       }
       
-      start_Month = new JComboBox(MonthList);
-      start_Month.setBounds(96, 285, 116, 21);
-      start_Month.setSize(new Dimension(55,20));
-      Mainpanel.add(start_Month);
-      
       //날짜 리스트
       String DateList[] = new String[31];
       for (int d = 1; d < 32; d++) {
     	  DateList[d - 1] = Integer.toString(d) + "일";
-      } 
+      }   
+      
+      start_Month = new JComboBox(MonthList);
+      start_Month.setBounds(96, 285, 116, 21);
+      start_Month.setSize(new Dimension(55,20));
+      Mainpanel.add(start_Month);
       
       //시작 날짜
       start_Date = new JComboBox(DateList);
       start_Date.setBounds(155, 285, 116, 21);
       start_Date.setSize(new Dimension(55,20));
       Mainpanel.add(start_Date);
-   
-      //기간(~) 라벨
-      JLabel termLabel = new JLabel(" ~ ");
-      termLabel.setBounds(210, 288, 57, 15);
-      Mainpanel.add(termLabel);
+      
+         //기간(~) 라벨
+         JLabel termLabel = new JLabel(" ~ ");
+         termLabel.setBounds(210, 288, 57, 15);
+         Mainpanel.add(termLabel);
+         
+         //끝 날짜
+         end_Month = new JComboBox(MonthList);
+         end_Month.setBounds(224, 285, 116, 21);
+         end_Month.setSize(new Dimension(55,20));
+         Mainpanel.add(end_Month);
+         
+         end_Date = new JComboBox(DateList);
+         end_Date.setBounds(284, 285, 116, 21);
+         end_Date.setSize(new Dimension(55,20));
+         Mainpanel.add(end_Date);
+         
+      
+      
+      JButton btnApply = new JButton("날짜 적용");
+      btnApply.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+         }
+      });
+      
+      btnApply.setBounds(343, 284, 97, 23);
+      Mainpanel.add(btnApply);
+      
+      // 막대 그래프
+      btnNewButton = new JButton("그래프 타입1");
+      btnNewButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+         }
+      });
+      btnNewButton.setBounds(498, 206, 126, 23);
+      Mainpanel.add(btnNewButton);
+      
+      // 꺾은선 그래프
+      btnGraphType = new JButton("그래프 타입2");
+      btnGraphType.setBounds(498, 239, 126, 23);
+      Mainpanel.add(btnGraphType);
+      
+      //종료 버튼
+      JButton btnExit = new JButton("종료");
+      btnExit.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+         }
+      });
+      btnExit.setBounds(527, 327, 97, 23);
+      Mainpanel.add(btnExit);
+      
+      JLabel lblSerch = new JLabel("지역 검색");
+      lblSerch.setBounds(27, 319, 57, 15);
+      Mainpanel.add(lblSerch);
+      //sample list
+      String Arealist[]= {"강서구","강북구","강동구"};
+      JComboBox comboBox = new JComboBox(Arealist);
+      comboBox.setBounds(96, 317, 116, 19);
+      Mainpanel.add(comboBox);
+      
+      //지역별 오염도 비교 패널
+      final JPanel Pollutionpanel = new JPanel(); // Pollution panel 화면
+      Pollutionpanel.setBounds(0, 0, 636, 360);
+      Pollutionpanel.setForeground(new Color(225, 240, 255));
+      frame.getContentPane().add(Pollutionpanel);
+      Pollutionpanel.setLayout(null);
+      
+      //미세먼지 지역도 농도 비교 패널 타이틀
+      JLabel PollutionLabel = new JLabel("Local Pollution degree of risk");
+      PollutionLabel.setFont(new Font("Arial", Font.BOLD, 25));
+      PollutionLabel.setForeground(Color.BLUE);
+      PollutionLabel.setHorizontalAlignment(JLabel.CENTER);
+      PollutionLabel.setBounds(118, 10, 393, 28);
+      Pollutionpanel.add(PollutionLabel);
+     
 
       // 시작 날짜
       /*textField_main1 = new JTextField();
@@ -131,63 +188,6 @@ public class Mains {
        textField_main2.setBounds(224, 285, 107, 21);
        textField_main2.setColumns(10);
        Mainpanel.add(textField_main2);*/
-      
-      
-      //끝 날짜
-      end_Month = new JComboBox(MonthList);
-      end_Month.setBounds(224, 285, 116, 21);
-      end_Month.setSize(new Dimension(55,20));
-      Mainpanel.add(end_Month);
-      
-      end_Date = new JComboBox(DateList);
-      end_Date.setBounds(284, 285, 116, 21);
-      end_Date.setSize(new Dimension(55,20));
-      Mainpanel.add(end_Date);
-        
-      
-      
-      JButton btnApply = new JButton("날짜 적용");
-      btnApply.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-         }
-      });
-        
-      btnApply.setBounds(343, 284, 97, 23);
-      Mainpanel.add(btnApply);
-        
-      // 막대 그래프
-      btnNewButton = new JButton("그래프 타입1");
-      btnNewButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-         }
-      });
-      btnNewButton.setBounds(498, 206, 126, 23);
-      Mainpanel.add(btnNewButton);
-        
-      // 꺾은선 그래프
-      btnGraphType = new JButton("그래프 타입2");
-      btnGraphType.setBounds(498, 239, 126, 23);
-      Mainpanel.add(btnGraphType);
-        
-      //종료 버튼
-      JButton btnExit = new JButton("종료");
-      btnExit.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-            System.exit(0);
-         }
-      });
-      btnExit.setBounds(527, 327, 97, 23);
-      Mainpanel.add(btnExit);
-        
-      JLabel lblSerch = new JLabel("지역 검색");
-      lblSerch.setBounds(27, 319, 57, 15);
-      Mainpanel.add(lblSerch);
-        
-      //sample list
-      String Arealist[]= {"강서구","강북구","강동구"};
-      JComboBox comboBox = new JComboBox(Arealist);
-      comboBox.setBounds(96, 317, 116, 19);
-      Mainpanel.add(comboBox);
       
       
       //지역별 오염도 비교 패널
