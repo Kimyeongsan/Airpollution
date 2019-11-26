@@ -82,10 +82,10 @@ class Draw_M_Graph2 extends JPanel {
 
 	int[] NO2 = { 100, 90, 70, 120, 100, 80, 50 };
 	int[] OZ = { 70, 75, 80, 85, 60, 70, 65 };
-	int[] CO2 = { 32, 25, 40, 75, 85, 40, 30 };
-	int SO2 = 22;
-	int Fd = 45;
-	int Ud = 100;
+	int[] CO2 = { 32, 125, 40, 75, 85, 40, 30 };
+	int[] SO2 = {122,120,17,55,70,80,50};
+	int[] Fd = {100,66,46,98,120,134,155};
+	int[] Ud = {120,60,150,100,80,90,120};
 
 	// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
 
@@ -102,15 +102,15 @@ class Draw_M_Graph2 extends JPanel {
 	}
 
 	public void setSO2(int x) {
-		this.SO2 = x;
+		//this.SO2 = x;
 	}
 
 	public void setFd(int x) {
-		this.Fd = x;
+		//this.Fd = x;
 	}
 
 	public void setUd(int x) {
-		this.Ud = x;
+		//this.Ud = x;
 	}
 
 	@Override
@@ -185,7 +185,52 @@ class Draw_M_Graph2 extends JPanel {
 			x1 += 50;
 		}
 		x1 = 60;// 그래프 그리고 다시 원위치
+		
+/////////SO2시작
+		g.setColor(Color.GREEN);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, SO2[i], 5, 5);
+			x1 += 50;
+		}
 
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, SO2[i] + 3, x1 + 50, SO2[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
+//////////////Fd 시작
+		g.setColor(Color.BLUE);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, Fd[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, Fd[i] + 3, x1 + 50, Fd[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+//////////Ud
+		g.setColor(Color.WHITE);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, Ud[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, Ud[i] + 3, x1 + 50, Ud[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
+
+		
+		
+		
 	}
 }
 
