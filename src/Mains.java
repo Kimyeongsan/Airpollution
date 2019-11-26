@@ -5,7 +5,7 @@ import javax.swing.*;
 //메인화면에 들어가는 그래프 클래스
 class Draw_M_Graph1 extends JPanel {
 	// 변수 데이터 여기에 선언
-	
+
 	int NO2 = 100;
 	int OZ = 70;
 	int CO2 = 32;
@@ -72,40 +72,33 @@ class Draw_M_Graph1 extends JPanel {
 		g.drawString("Ud", 5, 170);// 내용,x좌표,y좌표
 		g.setColor(Color.GREEN);
 		g.fillRect(80, 157, Ud, 20);
-		
-		
+
 	}
 }
 
 //메인에 들어가는 꺾은선 그래프
 class Draw_M_Graph2 extends JPanel {
 	// 변수 데이터 여기에 선언
-	
-	int NO2_1 = 100,NO2_2=90,NO2_3=70,NO2_4=120,NO2_5=100,NO2_6=80,NO2_7=50;
-	int OZ = 70;
-	int CO2 = 32;
+
+	int[] NO2 = { 100, 90, 70, 120, 100, 80, 50 };
+	int[] OZ = { 70, 75, 80, 85, 60, 70, 65 };
+	int[] CO2 = { 32, 25, 40, 75, 85, 40, 30 };
 	int SO2 = 22;
 	int Fd = 45;
 	int Ud = 100;
 
 	// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
 
-	public void setNO2(int x1,int x2,int x3,int x4, int x5,int x6,int x7) {
-		this.NO2_1 = x1;
-		this.NO2_2 = x2;
-		this.NO2_3 = x3;
-		this.NO2_4 = x4;
-		this.NO2_5 = x5;
-		this.NO2_6 = x6;
-		this.NO2_7 = x7;
+	public void setNO2(int x1, int x2, int x3, int x4, int x5, int x6, int x7) {
+
 	}
 
 	public void setOZ(int x) {
-		this.OZ = x;
+
 	}
 
 	public void setCO2(int x) {
-		this.CO2 = x;
+
 	}
 
 	public void setSO2(int x) {
@@ -123,11 +116,11 @@ class Draw_M_Graph2 extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
 		super.paintComponent(g);
-		
-		//종류Y축
-		g.setColor(Color.RED);// 글자
+
+		// 종류Y축
+		g.setColor(Color.PINK);// 글자
 		g.drawString("NO2", 5, 20);// 내용,x좌표,y좌표
-		g.setColor(Color.ORANGE);// 글자
+		g.setColor(Color.RED);// 글자
 		g.drawString("OZ", 5, 50);// 내용,x좌표,y좌표
 		g.setColor(Color.YELLOW);// 글자
 		g.drawString("CO2", 5, 80);// 내용,x좌표,y좌표
@@ -137,8 +130,8 @@ class Draw_M_Graph2 extends JPanel {
 		g.drawString("Fd", 5, 140);// 내용,x좌표,y좌표
 		g.setColor(Color.WHITE);// 글자
 		g.drawString("Ud", 5, 170);// 내용,x좌표,y좌표
-		
-		//기간 1~7일 X축
+
+		// 기간 1~7일 X축
 		g.drawString("DAY1", 50, 200);// 내용,x좌표,y좌표
 		g.drawString("DAY2", 100, 200);
 		g.drawString("DAY3", 150, 200);
@@ -146,27 +139,55 @@ class Draw_M_Graph2 extends JPanel {
 		g.drawString("DAY5", 250, 200);
 		g.drawString("DAY6", 300, 200);
 		g.drawString("DAY7", 350, 200);
-		
-		//점찍기
+
+		int x1 = 60;// 초기 x좌표
+
+/////////////NO2시작
+
+		// 점찍 반복문으로 수정//
+		for (int i = 0; i <= 6; i++) {
+			g.setColor(Color.PINK);
+			g.fillOval(x1, NO2[i], 5, 5);
+			x1 += 50;
+		}
+		x1 = 60;// 다시 x 초기 값으로 셋팅
+		// 직선 반복으로 수정
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, NO2[i] + 3, x1 + 50, NO2[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;//
+
+//////////////////Oz그래프 시작
 		g.setColor(Color.RED);
-		g.fillOval(60, NO2_1, 5, 5);
-		g.fillOval(110, NO2_2, 5, 5);
-		g.fillOval(160, NO2_3, 5, 5);
-		g.fillOval(210, NO2_4, 5, 5);
-		g.fillOval(260, NO2_5, 5, 5);
-		g.fillOval(310, NO2_6, 5, 5);
-		g.fillOval(360, NO2_7, 5, 5);
-		
-		g.drawLine(60,NO2_1+3,110,NO2_2+3);
-		g.drawLine(110,NO2_2+3,160,NO2_3+3);
-		g.drawLine(160,NO2_3+3,210,NO2_4+3);
-		g.drawLine(210,NO2_4+3,260,NO2_5+3);
-		g.drawLine(260,NO2_5+3,310,NO2_6+3);
-		g.drawLine(310,NO2_6+3,360,NO2_7+3);
-		
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, OZ[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, OZ[i] + 3, x1 + 50, OZ[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
+//////////////////CO2그래프 시작
+		g.setColor(Color.YELLOW);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, CO2[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, CO2[i] + 3, x1 + 50, CO2[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
 	}
 }
-
 
 //비교화면에 들어갈 그래프 클래스
 class Draw_C_Graph1 extends JPanel {
@@ -179,6 +200,7 @@ class Draw_C_Graph1 extends JPanel {
 	public void setFd(int x) {
 		this.Fd = x;
 	}
+
 	public void setUd(int x) {
 		this.Ud = x;
 	}
@@ -258,7 +280,6 @@ public class Mains {
 		PollutionLabel.setBounds(118, 10, 393, 28);
 		Pollutionpanel.add(PollutionLabel);
 
-		
 		// 메인 화면 패널
 		final JPanel Mainpanel = new JPanel();
 		Mainpanel.setBackground(new Color(225, 240, 255));
@@ -289,7 +310,7 @@ public class Mains {
 		((Draw_M_Graph1) Graphpanel).setFd(155);
 		((Draw_M_Graph1) Graphpanel).setUd(130);
 		// */
-		
+
 		// Graph 꺾은선
 		final JPanel Graphpanel2 = new Draw_M_Graph2();
 		Graphpanel2.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
@@ -369,17 +390,19 @@ public class Mains {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphpanel.setVisible(true);
-				
+
 			}
 		});
 		btnNewButton.setBounds(498, 206, 126, 23);
 		Mainpanel.add(btnNewButton);
 
-		// 꺾은선 그래프///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// 꺾은선
+		// 그래프///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		btnGraphType = new JButton("그래프 타입2");
 		btnGraphType.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Graphpanel.setVisible(false);;
+				Graphpanel.setVisible(false);
+				;
 				Graphpanel2.setVisible(true);
 			}
 		});
@@ -459,15 +482,14 @@ public class Mains {
 		// 그래프 시도해보자
 		// 비교 그래프 그려줄 클래스1
 		// 이거랑 같은 거 하나 더만들어서 2로 쓸꺼야
-		
-		
+
 		JPanel first_compareGraph_R = new Draw_C_Graph1();//// 그래프 1 들어갈 패널////////////
 		first_compareGraph_R.setBounds(38, 131, 228, 200);
 		first_compareGraph_R.setBorder(BorderFactory.createLineBorder(Color.red));
-		//값 수정은 이런식으로
+		// 값 수정은 이런식으로
 		((Draw_C_Graph1) first_compareGraph_R).setFd(12);
 		((Draw_C_Graph1) first_compareGraph_R).setFd(32);
-		
+
 		Comparepanel.add(first_compareGraph_R);
 		first_compareGraph_R.setVisible(true);
 
@@ -477,9 +499,9 @@ public class Mains {
 		Comparepanel.add(second_comparGraph);
 		((Draw_C_Graph1) second_comparGraph).setFd(70);
 		((Draw_C_Graph1) second_comparGraph).setUd(30);
-		//Draw_C_Graph2 삭제해도 됨.
-		//((Draw_C_Graph2) second_comparGraph).setFd(99);
-		//((Draw_C_Graph2) second_comparGraph).setFd(127);
+		// Draw_C_Graph2 삭제해도 됨.
+		// ((Draw_C_Graph2) second_comparGraph).setFd(99);
+		// ((Draw_C_Graph2) second_comparGraph).setFd(127);
 
 		/*
 		 * setSize(800, 600); setContentPane(new Test02());
