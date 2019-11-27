@@ -87,7 +87,7 @@ class Draw_M_Graph2 extends JPanel {
 	int[] CO2 = { 30, 25, 40, 55, 65, 70, 80 };
 	int[] SO2 = {90,100,117,120,130,110,100};
 	int[] Fd = {100,126,96,98,86,104,115};
-	int[] Ud = {50,60,70,80,70,90,100};
+	int[] Ud = {50,60,70,50,70,90,100};
 
 	// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
 	
@@ -230,7 +230,7 @@ class Draw_M_Graph2 extends JPanel {
 
 		x1 = 60;
 		for (int i = 0; i < 6; i++) {
-		//	g.drawLine(x1, Fd[i] + 3, x1 + 50, Fd[i + 1] + 3);
+		//	g.drawLine(x1, Fd[i] + 3, x1 + 50, Fd[i + 1] + 3); //원래 함수들 혹시 모르니 남겨두장
 			g.drawLine(x1, 160-(Fd[i]- 3), x1 + 50, 160-(Fd[i + 1] -3));
 			x1 += 50;
 		}
@@ -255,11 +255,10 @@ class Draw_M_Graph2 extends JPanel {
 //비교화면에 들어갈 그래프 클래스
 class Draw_C_Graph1 extends JPanel {
 	// 변수 데이터 여기에 선언
-
 	int Fd = 45;
 	int Ud = 100;
-
-	// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
+	
+	
 	public void setFd(int x) {
 		this.Fd = x;
 	}
