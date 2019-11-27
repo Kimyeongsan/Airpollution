@@ -7,10 +7,8 @@ import javax.swing.*;
 public class Mains {
 
    private JFrame frame;
-   private JTextField textField_main1;
-   private JTextField textField_main2;
-   private JButton btnNewButton;
-   private JButton btnGraphType;
+   private JButton btnGraphType1;
+   private JButton btnGraphType2;
    private JTextField textField_A1;
    private JTextField textField_D1;
    private JTextField textField_A2;
@@ -64,72 +62,66 @@ public class Mains {
       PollutionLabel.setBounds(118, 10, 393, 28);
       Pollutionpanel.add(PollutionLabel);
 
+      
+      //막대그래프 그리기
       class Draw_M_Graph1 extends JPanel{
          //변수 데이터 여기에 선언
-               int NO2=100;
-               int OZ=70;
-               int CO2=32;
-               int SO2=22;
-               int Fd=45;
-               int Ud=100;
+    	  int NO2=100;
+    	  int OZ=70;
+    	  int CO2=32;
+    	  int SO2=22;
+    	  int Fd=45;
+    	  int Ud=100;
                
-               //대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
-   
-               public  void setNO2(int x) {
-                  this.NO2=x;
-               }
-               public  void setOZ(int x) {
-                  this.OZ=x;
-               }
-               public  void setCO2(int x) {
-                  this.CO2=x;
-               }
-               public  void setSO2(int x) {
-                  this.SO2=x;
-               }
-               public  void setFd(int x) {
-                  this.Fd=x;
-               }
-               public  void setUd(int x) {
-                  this.Ud=x;
-               }
-            
-               @Override
-               public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
-                  super.paintComponent(g);
-                  
-                  
-                  g.setColor(Color.BLACK);//글자
-                  g.drawString("NO2", 5,20);//내용,x좌표,y좌표
-                  g.setColor(Color.ORANGE);
-                  g.fillRect(80, 7, NO2, 20);
-                  
-                  g.setColor(Color.BLACK);//글자
-                  g.drawString("OZ", 5, 50);//내용,x좌표,y좌표
-                  g.setColor(Color.GREEN);
-                  g.fillRect(80, 37, OZ, 20);
-                  
-                  g.setColor(Color.BLACK);//글자
-                  g.drawString("CO2", 5,80);//내용,x좌표,y좌표
-                  g.setColor(Color.ORANGE);
-                  g.fillRect(80, 67, CO2, 20);
-                  
-                  g.setColor(Color.BLACK);//글자
-                  g.drawString("SO2", 5,110);//내용,x좌표,y좌표
-                  g.setColor(Color.GREEN);
-                  g.fillRect(80, 97, SO2, 20);
-                  
-                  g.setColor(Color.BLACK);//글자
-                  g.drawString("Fd", 5,140);//내용,x좌표,y좌표
-                  g.setColor(Color.ORANGE);
-                  g.fillRect(80, 127, Fd, 20);
-                  
-                  g.setColor(Color.BLACK);//글자
-                  g.drawString("Ud", 5,170);//내용,x좌표,y좌표
-                  g.setColor(Color.GREEN);
-                  g.fillRect(80, 157, Ud, 20);
-               }
-            }
+    	  //대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
+    	  //오염도값 설정
+    	  public void setNO2(int x) { this.NO2 = x; }
+    	  public void setOZ(int x) { this.OZ = x; }
+    	  public void setCO2(int x) { this.CO2 = x; }
+    	  public void setSO2(int x) { this.SO2 = x; }
+    	  public void setFd(int x) { this.Fd = x; }
+    	  public void setUd(int x) { this.Ud = x; }
+    	  
+    	  @Override
+    	  public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
+    		  super.paintComponent(g);
+    		  
+    		  
+    		  g.setColor(Color.BLACK);//글자
+    		  g.drawString("NO2", 5,20);//내용,x좌표,y좌표
+    		  g.setColor(Color.ORANGE);
+    		  g.fill3DRect(80, 7, NO2, 20, true);
+    		  
+    		  g.setColor(Color.BLACK);//글자
+    		  g.drawString("OZ", 5, 50);//내용,x좌표,y좌표
+    		  g.setColor(Color.GREEN);
+    		  g.fill3DRect(80, 37, OZ, 20, true);
+    		  
+    		  g.setColor(Color.BLACK);//글자
+    		  g.drawString("CO2", 5,80);//내용,x좌표,y좌표
+    		  g.setColor(Color.ORANGE);
+    		  g.fill3DRect(80, 67, CO2, 20, true);
+    		  
+    		  g.setColor(Color.BLACK);//글자
+    		  g.drawString("SO2", 5,110);//내용,x좌표,y좌표
+    		  g.setColor(Color.GREEN);
+    		  g.fill3DRect(80, 97, SO2, 20, true);
+    		  
+    		  g.setColor(Color.BLACK);//글자
+    		  g.drawString("Fd", 5,140);//내용,x좌표,y좌표
+    		  g.setColor(Color.ORANGE);
+    		  g.fill3DRect(80, 127, Fd, 20, true);
+    		  
+    		  g.setColor(Color.BLACK);//글자
+    		  g.drawString("Ud", 5,170);//내용,x좌표,y좌표
+    		  g.setColor(Color.GREEN);
+    		  g.fill3DRect(80, 157, Ud, 20, true);
+    	  }
+      }
+      
+      
+
+////////메인 화면////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
       // 메인 화면 패널
       final JPanel Mainpanel = new JPanel();
       Mainpanel.setBackground(new Color(225, 240, 255));
@@ -150,15 +142,8 @@ public class Mains {
       Graphpanel.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
       Graphpanel.setBounds(27, 48, 447, 214);
       Mainpanel.add(Graphpanel);
-      //수정 테스트
-      ///*
-      ((Draw_M_Graph1) Graphpanel).setNO2(22);//쉬파꺼 이렇게 수정하면 한방이네
-      ((Draw_M_Graph1) Graphpanel).setOZ(75);
-      ((Draw_M_Graph1) Graphpanel).setCO2(140);
-      ((Draw_M_Graph1) Graphpanel).setSO2(25);
-      ((Draw_M_Graph1) Graphpanel).setFd(155);
-      ((Draw_M_Graph1) Graphpanel).setUd(130);
-      //*/
+
+      
       
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
       JLabel lblDay = new JLabel("날짜 입력");
@@ -171,6 +156,7 @@ public class Mains {
          MonthList[m - 1] = Integer.toString(m) + "월";
       }
 
+      //시작 월
       start_Month = new JComboBox(MonthList);
       start_Month.setBounds(96, 285, 116, 21);
       start_Month.setSize(new Dimension(55, 20));
@@ -193,52 +179,133 @@ public class Mains {
       termLabel.setBounds(210, 288, 57, 15);
       Mainpanel.add(termLabel);
 
-      // 시작 날짜
-      /*
-       * textField_main1 = new JTextField(); textField_main1.setBounds(160, 285, 106,
-       * 21); textField_main1.setSize(new Dimension(50, 20));
-       * textField_main1.setColumns(5); Mainpanel.add(textField_main1);
-       */
 
-      // 마지막 날짜
-      /*
-       * textField_main2 = new JTextField(); textField_main2.setBounds(224, 285, 107,
-       * 21); textField_main2.setColumns(10); Mainpanel.add(textField_main2);
-       */
-
-      // 끝 날짜
+      // 끝 월
       end_Month = new JComboBox(MonthList);
       end_Month.setBounds(224, 285, 116, 21);
       end_Month.setSize(new Dimension(55, 20));
       Mainpanel.add(end_Month);
 
+      //끝 날짜
       end_Date = new JComboBox(DateList);
       end_Date.setBounds(284, 285, 116, 21);
       end_Date.setSize(new Dimension(55, 20));
       Mainpanel.add(end_Date);
 
+      
+      //날짜 적용
       JButton btnApply = new JButton("날짜 적용");
       btnApply.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-         }
+        	 String error = "";
+        	 boolean s_check = false, e_check = false, d_check = true;
+        	
+        	 int s_month = start_Month.getSelectedIndex() + 1;
+        	 int s_date = start_Date.getSelectedIndex() + 1;
+        	 int e_month = end_Month.getSelectedIndex() + 1;
+        	 int e_date = end_Date.getSelectedIndex() + 1;
+        	 
+        	 
+        	 //////////////////////////////시작날짜 에러/////////////////////////////////////
+        	 //시작 날짜 - 2월 에러
+        	 if(s_month == 2  && s_date > 28) {
+        		 error += "시작 날짜를 다시 선택하세요 (2월은 28일까지)" + "\n";
+        	 }
+        	 
+        	 //시작 날짜 - 1월부터 7월
+        	 else if(s_month < 8) {
+        		 if(s_month % 2 == 0 && s_date == 31) 
+        			 error += "시작 날짜를 다시 선택하세요 (" + s_month + "월은 30일까지" + "\n"; 
+        		 else s_check = true;
+        	 }
+        	 //시작 날짜 - 8월부터 12월
+        	 else {
+        		 if(s_month % 2 == 1 && s_date == 31) 
+        			 error += "시작 날짜를 다시 선택하세요 (" + s_month + "월은 30일까지" + "\n"; 
+        		 else s_check = true;
+        	 }        	
+        	 
+        	 ////////////////////////////////////종료날짜 에러/////////////////////////////////////
+        	 //종료 날짜 - 2월 에러
+        	 if(e_month == 2 && e_date > 28) {
+        		 error += "종료 날짜를 다시 선택하세요 (2월은 28일까지)" + "\n";
+        	 }
+        	 
+        	 //종료 날짜 - 1월부터 7월
+        	 else if(e_month < 8) {
+        		 if(e_month % 2 == 0 && e_date == 31) 
+        			 error += "종료 날짜를 다시 선택하세요 (" + e_month + "월은 30일까지" + "\n";     
+        		 else e_check = true;
+        	 }
+        	 //종료 날짜 - 8월부터 12월
+        	 else {
+        		 if(e_month % 2 == 1 && e_date == 31) 
+        			 error += "종료 날짜를 다시 선택하세요 (" + e_month + "월은 30일까지" + "\n";
+        		 else e_check = true;
+        	 }        
+
+        	 ////////////////////////////시작 날짜가 더 클 때//////////////////////////////////////////
+        	 if(s_check == true && e_check == true) {
+        		 //시작 월이 종료 월보다 클 때
+        		 if(s_month > e_month) {
+        			 error += "시작 날짜가 더 큽니다." + "\n";
+        			 d_check = false;
+        		 }
+        		 //시작 월과 종료 월이 같을 때 시작 일수가 더 큰 경우
+        		 else if(s_month == e_month && s_date > e_date) {
+        			 error += "시작 날짜가 더 큽니다." + "\n";
+        			 d_check = false;
+        		 } 
+        	 }
+        	 
+        	 ////////////////////////////에러창 띄우기////////////////////////////////////////////////
+        	 //에러가 발생했을 때
+        	 if(s_check == false || e_check == false || d_check == false) {
+        		 //에러 메세지 팝업창 띄우기
+        		 JOptionPane.showMessageDialog(null, error,"ERROR_DATE", JOptionPane.ERROR_MESSAGE);
+        	 }
+        	 
+        	 
+        	 /*
+        	  * 입력 받은 날짜로 그래프 불러와야되는데 디비 연동이 안된다....... 계정 한글이르무ㅜㅜㅜㅠㅜㅠㅠㅠㅠㅠㅜㅠ
+        	  */
+        	 
+         }	
       });
 
       btnApply.setBounds(343, 284, 97, 23);
       Mainpanel.add(btnApply);
 
+      
       // 막대 그래프
-      btnNewButton = new JButton("그래프 타입1");
-      btnNewButton.addActionListener(new ActionListener() {
+      btnGraphType1 = new JButton("그래프 타입1");
+      btnGraphType1.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
+        	 
+        	 //수정 테스트
+        	 ///*
+        	 ((Draw_M_Graph1) Graphpanel).setNO2(22);//쉬파꺼 이렇게 수정하면 한방이네
+        	 ((Draw_M_Graph1) Graphpanel).setOZ(75);
+        	 ((Draw_M_Graph1) Graphpanel).setCO2(140);
+        	 ((Draw_M_Graph1) Graphpanel).setSO2(25);
+        	 ((Draw_M_Graph1) Graphpanel).setFd(155);
+        	 ((Draw_M_Graph1) Graphpanel).setUd(130);
+        	 Graphpanel.repaint();
          }
       });
-      btnNewButton.setBounds(498, 206, 126, 23);
-      Mainpanel.add(btnNewButton);
+      btnGraphType1.setBounds(498, 206, 126, 23);
+      Mainpanel.add(btnGraphType1);
 
+      
       // 꺾은선 그래프
-      btnGraphType = new JButton("그래프 타입2");
-      btnGraphType.setBounds(498, 239, 126, 23);
-      Mainpanel.add(btnGraphType);
+      btnGraphType2 = new JButton("그래프 타입2");
+      btnGraphType2.addActionListener(new ActionListener() {
+    	  public void actionPerformed(ActionEvent e) {
+    		  Graphpanel.repaint();
+    	  }
+      });
+      btnGraphType2.setBounds(498, 239, 126, 23);
+      Mainpanel.add(btnGraphType2);
 
       // 종료 버튼
       JButton btnExit = new JButton("종료");
@@ -260,6 +327,7 @@ public class Mains {
       comboBox.setBounds(96, 317, 116, 19);
       Mainpanel.add(comboBox);
 
+      
 /////////////////////////////지역별 오염도 비교 패널/////////////////////////////////////////////////////////////////////////////////요서
       final JPanel Comparepanel = new JPanel();
       Comparepanel.setBounds(0, 0, 636, 360);
