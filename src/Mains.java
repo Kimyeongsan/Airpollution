@@ -79,39 +79,58 @@ class Draw_M_Graph1 extends JPanel {
 //메인에 들어가는 꺾은선 그래프
 class Draw_M_Graph2 extends JPanel {
 	// 변수 데이터 여기에 선언
-
-	int[] NO2 = { 100, 90, 70, 120, 100, 80, 50 };
-	int[] OZ = { 70, 75, 80, 85, 60, 70, 65 };
-	int[] CO2 = { 32, 125, 40, 75, 85, 40, 30 };
-	int[] SO2 = {122,120,17,55,70,80,50};
-	int[] Fd = {100,66,46,98,120,134,155};
-	int[] Ud = {120,60,150,100,80,90,120};
+//최고높이 0, 최저높이 160
+//160-[희망값]->Y좌표로 출력?
+//수정시 최저 0 최고 150
+	int[] NO2 = { 0, 60, 70, 75, 85, 80, 150 };
+	int[] OZ = { 70, 75, 80, 85, 50, 55, 60 };
+	int[] CO2 = { 30, 25, 40, 55, 65, 70, 80 };
+	int[] SO2 = {90,100,117,120,130,110,100};
+	int[] Fd = {100,126,96,98,86,104,115};
+	int[] Ud = {50,60,70,80,70,90,100};
 
 	// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
-
-	public void setNO2(int x1, int x2, int x3, int x4, int x5, int x6, int x7) {
-
+	
+	//값 변경인데 배열로 받아서 챱챱하장
+	public void setNO2(int arr[]) {
+		for(int i=0;i<=6;i++) {
+			this.NO2[i]=arr[i];
+		}
 	}
 
-	public void setOZ(int x) {
-
+	public void setOZ(int arr[]) {
+		for(int i=0;i<=6;i++) {
+			this.OZ[i]=arr[i];
+		}
 	}
 
-	public void setCO2(int x) {
-
+	public void setCO2(int arr[]) {
+		for(int i=0;i<=6;i++) {
+			this.CO2[i]=arr[i];
+		}
 	}
 
-	public void setSO2(int x) {
+	public void setSO2(int arr[]) {
 		//this.SO2 = x;
+		for(int i=0;i<=6;i++) {
+			this.SO2[i]=arr[i];
+		}
 	}
 
-	public void setFd(int x) {
+	public void setFd(int arr[]) {
 		//this.Fd = x;
+		for(int i=0;i<=6;i++) {
+			this.Fd[i]=arr[i];
+		}
 	}
 
-	public void setUd(int x) {
+	public void setUd(int arr[]) {
 		//this.Ud = x;
+		for(int i=0;i<=6;i++) {
+			this.Ud[i]=arr[i];
+		}
 	}
+	
 
 	@Override
 	public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
@@ -147,13 +166,13 @@ class Draw_M_Graph2 extends JPanel {
 		// 점찍 반복문으로 수정//
 		for (int i = 0; i <= 6; i++) {
 			g.setColor(Color.PINK);
-			g.fillOval(x1, NO2[i], 5, 5);
+			g.fillOval(x1, 160-NO2[i], 5, 5);
 			x1 += 50;
 		}
 		x1 = 60;// 다시 x 초기 값으로 셋팅
 		// 직선 반복으로 수정
 		for (int i = 0; i < 6; i++) {
-			g.drawLine(x1, NO2[i] + 3, x1 + 50, NO2[i + 1] + 3);
+			g.drawLine(x1, 160-(NO2[i] - 3), x1 + 50, 160-(NO2[i + 1] - 3));
 			x1 += 50;
 		}
 		x1 = 60;//
@@ -161,13 +180,13 @@ class Draw_M_Graph2 extends JPanel {
 //////////////////Oz그래프 시작
 		g.setColor(Color.RED);
 		for (int i = 0; i <= 6; i++) {
-			g.fillOval(x1, OZ[i], 5, 5);
+			g.fillOval(x1, 160-OZ[i], 5, 5);
 			x1 += 50;
 		}
 
 		x1 = 60;
 		for (int i = 0; i < 6; i++) {
-			g.drawLine(x1, OZ[i] + 3, x1 + 50, OZ[i + 1] + 3);
+			g.drawLine(x1, 160-(OZ[i]- 3), x1 + 50, 160-(OZ[i + 1] -3));
 			x1 += 50;
 		}
 		x1 = 60;// 그래프 그리고 다시 원위치
@@ -175,13 +194,14 @@ class Draw_M_Graph2 extends JPanel {
 //////////////////CO2그래프 시작
 		g.setColor(Color.YELLOW);
 		for (int i = 0; i <= 6; i++) {
-			g.fillOval(x1, CO2[i], 5, 5);
+			g.fillOval(x1, 160-CO2[i], 5, 5);
 			x1 += 50;
 		}
 
 		x1 = 60;
 		for (int i = 0; i < 6; i++) {
-			g.drawLine(x1, CO2[i] + 3, x1 + 50, CO2[i + 1] + 3);
+			//g.drawLine(x1, CO2[i] + 3, x1 + 50, CO2[i + 1] + 3);
+			g.drawLine(x1, 160-(CO2[i]- 3), x1 + 50, 160-(CO2[i + 1] -3));
 			x1 += 50;
 		}
 		x1 = 60;// 그래프 그리고 다시 원위치
@@ -189,13 +209,14 @@ class Draw_M_Graph2 extends JPanel {
 /////////SO2시작
 		g.setColor(Color.GREEN);
 		for (int i = 0; i <= 6; i++) {
-			g.fillOval(x1, SO2[i], 5, 5);
+			g.fillOval(x1, 160-SO2[i], 5, 5);
 			x1 += 50;
 		}
 
 		x1 = 60;
 		for (int i = 0; i < 6; i++) {
-			g.drawLine(x1, SO2[i] + 3, x1 + 50, SO2[i + 1] + 3);
+		//	g.drawLine(x1, SO2[i] + 3, x1 + 50, SO2[i + 1] + 3);
+			g.drawLine(x1, 160-(SO2[i]- 3), x1 + 50, 160-(SO2[i + 1] -3));
 			x1 += 50;
 		}
 		x1 = 60;// 그래프 그리고 다시 원위치
@@ -203,34 +224,31 @@ class Draw_M_Graph2 extends JPanel {
 //////////////Fd 시작
 		g.setColor(Color.BLUE);
 		for (int i = 0; i <= 6; i++) {
-			g.fillOval(x1, Fd[i], 5, 5);
+			g.fillOval(x1, 160-Fd[i], 5, 5);
 			x1 += 50;
 		}
 
 		x1 = 60;
 		for (int i = 0; i < 6; i++) {
-			g.drawLine(x1, Fd[i] + 3, x1 + 50, Fd[i + 1] + 3);
+		//	g.drawLine(x1, Fd[i] + 3, x1 + 50, Fd[i + 1] + 3);
+			g.drawLine(x1, 160-(Fd[i]- 3), x1 + 50, 160-(Fd[i + 1] -3));
 			x1 += 50;
 		}
 		x1 = 60;// 그래프 그리고 다시 원위치
 //////////Ud
 		g.setColor(Color.WHITE);
 		for (int i = 0; i <= 6; i++) {
-			g.fillOval(x1, Ud[i], 5, 5);
+			g.fillOval(x1, 160-Ud[i], 5, 5);
 			x1 += 50;
 		}
 
 		x1 = 60;
 		for (int i = 0; i < 6; i++) {
-			g.drawLine(x1, Ud[i] + 3, x1 + 50, Ud[i + 1] + 3);
+			//g.drawLine(x1, Ud[i] + 3, x1 + 50, Ud[i + 1] + 3);
+			g.drawLine(x1, 160-(Ud[i]- 3), x1 + 50, 160-(Ud[i + 1] -3));
 			x1 += 50;
 		}
 		x1 = 60;// 그래프 그리고 다시 원위치
-
-
-		
-		
-		
 	}
 }
 
@@ -357,11 +375,15 @@ public class Mains {
 		// */
 
 		// Graph 꺾은선
+		
 		final JPanel Graphpanel2 = new Draw_M_Graph2();
 		Graphpanel2.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
 		Graphpanel2.setBounds(27, 48, 447, 214);
 		Graphpanel2.setBackground(Color.DARK_GRAY);
 		Mainpanel.add(Graphpanel2);
+		//수정은 이런식으로.
+		//int temp[]= {100,120,40,100,80,60,60};
+		//((Draw_M_Graph2) Graphpanel2).setNO2(temp);
 		Graphpanel2.setVisible(false);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
