@@ -5,11 +5,13 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+
  public class Create_CSV {
  public static void main(String[] args) {
  
    try {
-    PrintWriter pw= new PrintWriter(new File("C:\\Users\\YeongSan\\Desktop\\¿œ∫∞∆Ú±’¥Î±‚ø¿ø∞µµ_2018.CSV"));
+    PrintWriter pw= new PrintWriter(new File("C:\\Users\\YeongSan\\Desktop\\Pollution.CSV"));
     StringBuilder sb=new StringBuilder();
  
  
@@ -18,20 +20,24 @@ import java.sql.ResultSet;
     connection=obj_DB_Connection.getConnection();
     ResultSet rs=null;
  
-    String query="select * from books";
+    String query="select * from pollution";
     PreparedStatement ps=connection.prepareStatement(query);
     rs=ps.executeQuery();
  
     while(rs.next()){
-     sb.append(rs.getString("book_sl_no"));
+     sb.append(rs.getString("DATE"));
      sb.append(","); 
-     sb.append(rs.getString("book_title"));
+     sb.append(rs.getString("PLACE"));
      sb.append(",");
-     sb.append(rs.getString("category_name"));
+     sb.append(rs.getString("NO2"));
      sb.append(",");
-     sb.append(rs.getString("author_name"));
+     sb.append(rs.getString("O3"));
      sb.append(",");
-     sb.append(rs.getString("publisher_name"));
+     sb.append(rs.getString("SO2"));
+     sb.append(",");
+     sb.append(rs.getString("FINEDUST"));
+     sb.append(",");
+     sb.append(rs.getString("TINYDUST"));
      sb.append("\r\n");
     }
  

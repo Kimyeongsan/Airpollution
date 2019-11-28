@@ -3,6 +3,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+<<<<<<< HEAD
 // 변수 데이터 여기에 선언
 class MainGraph_Stick extends JPanel {
 	int NO2 = 100;
@@ -72,6 +73,39 @@ class MainGraph_Stick extends JPanel {
 		g.setColor(Color.GREEN);
 		g.fillRect(80, 157, Ud, 20);
 
+=======
+
+
+public class MainGraph {
+	public static void main(String args[]) {
+		JFrame frame = new JFrame("Pollution Graph");
+		frame.setLocation(500,200);
+		frame.setPreferredSize(new Dimension(400,350));
+		Container contentPane = frame.getContentPane();
+  
+		DrawingPanel drawingPanel = new DrawingPanel();
+		contentPane.add(drawingPanel, BorderLayout.CENTER);
+		//그래프를 그릴 패널
+  
+		JPanel controlPanel = new JPanel();
+		JTextField text1 = new JTextField(3);
+		JTextField text2 = new JTextField(3);
+		JTextField text3 = new JTextField(3);
+		JButton button = new JButton("그래프 그리기");
+		controlPanel.add(new JLabel("강서구"));
+		controlPanel.add(text1);
+		controlPanel.add(new JLabel("서대문구"));
+		controlPanel.add(text2);
+		controlPanel.add(new JLabel("강남구"));
+		controlPanel.add(text3);
+		controlPanel.add(button);
+		contentPane.add(controlPanel, BorderLayout.SOUTH);	
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		button.addActionListener(new DrawActionListener(text1,text2,text3,drawingPanel));
+		//"그래프 그리기" 버튼을 눌렀을때 작동 할 리스터등록
+		frame.pack();
+		frame.setVisible(true);
+>>>>>>> branch 'master' of https://github.com/Kimyeongsan/Airpollution.git
 	}
 }
 
