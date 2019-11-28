@@ -1,108 +1,230 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-public class MainGraph {
-	public static void main(String args[]) {
-		JFrame frame = new JFrame("Pollution Graph");
-		frame.setLocation(500,200);
-		frame.setPreferredSize(new Dimension(400,350));
-		Container contentPane = frame.getContentPane();
-  
-		DrawingPanel drawingPanel = new DrawingPanel();
-		contentPane.add(drawingPanel, BorderLayout.CENTER);
-		//그래프를 그릴 패널
-  
-		JPanel controlPanel = new JPanel();
-		JTextField text1 = new JTextField(3);
-		JTextField text2 = new JTextField(3);
-		JTextField text3 = new JTextField(3);
-		JButton button = new JButton("그래프 그리기");
-		controlPanel.add(new JLabel("강서구"));
-		controlPanel.add(text1);
-		controlPanel.add(new JLabel("서대문구"));
-		controlPanel.add(text2);
-		controlPanel.add(new JLabel("강남구"));
-		controlPanel.add(text3);
-		controlPanel.add(button);
-		contentPane.add(controlPanel, BorderLayout.SOUTH);	
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		button.addActionListener(new DrawActionListener(text1,text2,text3,drawingPanel));
-		//"그래프 그리기" 버튼을 눌렀을때 작동 할 리스터등록
-		frame.pack();
-		frame.setVisible(true);
+// 변수 데이터 여기에 선언
+class MainGraph_Stick extends JPanel {
+	int NO2 = 100;
+	int OZ = 70;
+	int CO2 = 32;
+	int SO2 = 22;
+	int Fd = 45;
+	int Ud = 100;
+
+// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
+
+	public void setNO2(int x) {
+		this.NO2 = x;
+	}
+
+	public void setOZ(int x) {
+		this.OZ = x;
+	}
+
+	public void setCO2(int x) {
+		this.CO2 = x;
+	}
+
+	public void setSO2(int x) {
+		this.SO2 = x;
+	}
+
+	public void setFd(int x) {
+		this.Fd = x;
+	}
+
+	public void setUd(int x) {
+		this.Ud = x;
+	}
+
+	@Override
+	public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
+		super.paintComponent(g);
+
+		g.setColor(Color.BLACK);// 글자
+		g.drawString("NO2", 5, 20);// 내용,x좌표,y좌표
+		g.setColor(Color.ORANGE);
+		g.fillRect(80, 7, NO2, 20);
+
+		g.setColor(Color.BLACK);// 글자
+		g.drawString("OZ", 5, 50);// 내용,x좌표,y좌표
+		g.setColor(Color.GREEN);
+		g.fillRect(80, 37, OZ, 20);
+
+		g.setColor(Color.BLACK);// 글자
+		g.drawString("CO2", 5, 80);// 내용,x좌표,y좌표
+		g.setColor(Color.ORANGE);
+		g.fillRect(80, 67, CO2, 20);
+
+		g.setColor(Color.BLACK);// 글자
+		g.drawString("SO2", 5, 110);// 내용,x좌표,y좌표
+		g.setColor(Color.GREEN);
+		g.fillRect(80, 97, SO2, 20);
+
+		g.setColor(Color.BLACK);// 글자
+		g.drawString("Fd", 5, 140);// 내용,x좌표,y좌표
+		g.setColor(Color.ORANGE);
+		g.fillRect(80, 127, Fd, 20);
+
+		g.setColor(Color.BLACK);// 글자
+		g.drawString("Ud", 5, 170);// 내용,x좌표,y좌표
+		g.setColor(Color.GREEN);
+		g.fillRect(80, 157, Ud, 20);
+
 	}
 }
 
-//그래피를 그리는 패널 클래스 ++ 추후 수정예정
+//메인에 들어가는 꺾은선 그래프
+class MainGraph_Polygonal extends JPanel {
+// 변수 데이터 여기에 선언
 
-class DrawingPanel extends JPanel {
-	int korean, english, math;
-	
-	public void paint(Graphics g){
-		g.clearRect(0,0,getWidth(),getHeight());
-		g.drawLine(50,250,350,250);
-		
-		for(int cnt = 1 ;cnt<11;cnt++) {
-			g.drawString(cnt *10 +"",25,255-20*cnt);
-			g.drawLine(50, 250-20*cnt, 350,250-20*cnt);
+	int[] NO2 = { 100, 90, 70, 120, 100, 80, 50 };
+	int[] OZ = { 70, 75, 80, 85, 60, 70, 65 };
+	int[] CO2 = { 32, 125, 40, 75, 85, 40, 30 };
+	int[] SO2 = { 122, 120, 17, 55, 70, 80, 50 };
+	int[] Fd = { 100, 66, 46, 98, 120, 134, 155 };
+	int[] Ud = { 120, 60, 150, 100, 80, 90, 120 };
+
+// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
+
+	public void setNO2(int x1, int x2, int x3, int x4, int x5, int x6, int x7) {
+
+	}
+
+	public void setOZ(int x) {
+
+	}
+
+	public void setCO2(int x) {
+
+	}
+
+	public void setSO2(int x) {
+		// this.SO2 = x;
+	}
+
+	public void setFd(int x) {
+		// this.Fd = x;
+	}
+
+	public void setUd(int x) {
+		// this.Ud = x;
+	}
+
+	@Override
+	public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
+		super.paintComponent(g);
+
+		// 종류Y축
+		g.setColor(Color.PINK);// 글자
+		g.drawString("NO2", 5, 20);// 내용,x좌표,y좌표
+		g.setColor(Color.RED);// 글자
+		g.drawString("OZ", 5, 50);// 내용,x좌표,y좌표
+		g.setColor(Color.YELLOW);// 글자
+		g.drawString("CO2", 5, 80);// 내용,x좌표,y좌표
+		g.setColor(Color.GREEN);// 글자
+		g.drawString("SO2", 5, 110);// 내용,x좌표,y좌표
+		g.setColor(Color.BLUE);// 글자
+		g.drawString("Fd", 5, 140);// 내용,x좌표,y좌표
+		g.setColor(Color.WHITE);// 글자
+		g.drawString("Ud", 5, 170);// 내용,x좌표,y좌표
+
+		// 기간 1~7일 X축
+		g.drawString("DAY1", 50, 200);// 내용,x좌표,y좌표
+		g.drawString("DAY2", 100, 200);
+		g.drawString("DAY3", 150, 200);
+		g.drawString("DAY4", 200, 200);
+		g.drawString("DAY5", 250, 200);
+		g.drawString("DAY6", 300, 200);
+		g.drawString("DAY7", 350, 200);
+
+		int x1 = 60;// 초기 x좌표
+
+/////////////NO2시작
+
+		// 점찍 반복문으로 수정//
+		for (int i = 0; i <= 6; i++) {
+			g.setColor(Color.PINK);
+			g.fillOval(x1, NO2[i], 5, 5);
+			x1 += 50;
 		}
- 
-		g.drawLine(50,20,50,250);
-		g.drawString("강서구",100,270);
-		g.drawString("서대문구",200,270);
-		g.drawString("강남구",300,270);
+		x1 = 60;// 다시 x 초기 값으로 셋팅
+		// 직선 반복으로 수정
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, NO2[i] + 3, x1 + 50, NO2[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;//
+
+//////////////////Oz그래프 시작
 		g.setColor(Color.RED);
- 
-		if (korean>0)
-			g.fillRect(110,250-korean*2,10,korean*2);
-		if(english>0)
-			g.fillRect(210,250-english*2,10,english*2);
-		if(math>0)
-			g.fillRect(310,250-math*2,10,math*2);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, OZ[i], 5, 5);
+			x1 += 50;
 		}
- 
-	void setScores(int korean, int english, int math){
-		this.korean=korean;
-		this.english=english;
-		this.math=math;
-		}
-	}
 
-//버튼 눌렀을때 동작하는 리스너
-class DrawActionListener implements ActionListener {
-	JTextField text1,text2,text3;
- 
-	DrawingPanel drawingPanel;
- 
-	DrawActionListener(JTextField text1, JTextField text2, JTextField text3, DrawingPanel drawingPanel) {
-		this.text1=text1;
-		this.text2=text2;
-		this.text3=text3;
-		this.drawingPanel = drawingPanel;
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, OZ[i] + 3, x1 + 50, OZ[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
+//////////////////CO2그래프 시작
+		g.setColor(Color.YELLOW);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, CO2[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, CO2[i] + 3, x1 + 50, CO2[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
+/////////SO2시작
+		g.setColor(Color.GREEN);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, SO2[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, SO2[i] + 3, x1 + 50, SO2[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
+//////////////Fd 시작
+		g.setColor(Color.BLUE);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, Fd[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, Fd[i] + 3, x1 + 50, Fd[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+//////////Ud
+		g.setColor(Color.WHITE);
+		for (int i = 0; i <= 6; i++) {
+			g.fillOval(x1, Ud[i], 5, 5);
+			x1 += 50;
+		}
+
+		x1 = 60;
+		for (int i = 0; i < 6; i++) {
+			g.drawLine(x1, Ud[i] + 3, x1 + 50, Ud[i + 1] + 3);
+			x1 += 50;
+		}
+		x1 = 60;// 그래프 그리고 다시 원위치
+
 	}
-	
- public void actionPerformed(ActionEvent e) {
-	 try{
-		 int korean = Integer.parseInt(text1.getText());
-		 int english = Integer.parseInt(text2.getText());
-		 int math = Integer.parseInt(text3.getText());
-		 drawingPanel.setScores(korean, english, math);
-		 drawingPanel.repaint();
-		 }
-	 catch (NumberFormatException nfe){
-		 JOptionPane.showMessageDialog(drawingPanel,"잘못된 숫자 입력입니다","에러메시지",JOptionPane.ERROR_MESSAGE);
-		 }
-	 }
 }
