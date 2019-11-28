@@ -464,7 +464,7 @@ public class Mains {
 
 		// 꺾은선
 		// 그래프///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		btnGraphType = new JButton("그래프 타입2");
+		btnGraphType = new JButton("꺾은선그래프");
 		btnGraphType.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphpanel.setVisible(false);
