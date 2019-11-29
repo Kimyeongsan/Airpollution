@@ -1,0 +1,83 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+class MainGraph_Stick extends JPanel {
+	private int NO2;
+	private int OZ;
+	private int CO2;
+	private int SO2;
+	private int Fd;
+	private int Ud;
+
+// ´ëÃæ ÀÌ°É·Î Á¶ÀýÇÏ·Á°í Çß´Âµ¥ ÀÛµ¿¾ÈÇÏÁê~~ Åä¿äÀÏ ÇØ¾ßÁê~~
+
+	public void setNO2(int x) {
+		this.NO2 = x;
+	}
+
+	public void setOZ(int x) {
+		this.OZ = x;
+	}
+
+	public void setCO2(int x) {
+		this.CO2 = x;
+	}
+
+	public void setSO2(int x) {
+		this.SO2 = x;
+	}
+
+	public void setFd(int x) {
+		this.Fd = x;
+	}
+
+	public void setUd(int x) {
+		this.Ud = x;
+	}
+
+	@Override
+	public void paintComponent(Graphics g) { // drawXXX ¸»°í fillXXX´Â ³»ºÎ°¡ Ã¤¿öÁü.
+		super.paintComponent(g);
+
+		g.setColor(Color.BLACK);// ±ÛÀÚ
+		g.drawString("NO2", 5, 20);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.ORANGE);
+		g.fillRect(80, 7, NO2, 20);
+
+		g.setColor(Color.BLACK);// ±ÛÀÚ
+		g.drawString("OZ", 5, 50);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.GREEN);
+		g.fillRect(80, 37, OZ, 20);
+
+		g.setColor(Color.BLACK);// ±ÛÀÚ
+		g.drawString("CO2", 5, 80);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.ORANGE);
+		g.fillRect(80, 67, CO2, 20);
+
+		g.setColor(Color.BLACK);// ±ÛÀÚ
+		g.drawString("SO2", 5, 110);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.GREEN);
+		g.fillRect(80, 97, SO2, 20);
+
+		g.setColor(Color.BLACK);// ±ÛÀÚ
+		g.drawString("Fd", 5, 140);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.ORANGE);
+		g.fillRect(80, 127, Fd, 20);
+
+		g.setColor(Color.BLACK);// ±ÛÀÚ
+		g.drawString("Ud", 5, 170);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.GREEN);
+		g.fillRect(80, 157, Ud, 20);
+	}
+}
