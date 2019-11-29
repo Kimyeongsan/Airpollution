@@ -38,10 +38,11 @@ import java.sql.ResultSet;
      sb.append(rs.getString("FINEDUST"));
      sb.append(",");
      sb.append(rs.getString("TINYDUST"));
-     sb.append("\r\n");
+     sb.append("\n");
     }
  
     pw.write(sb.toString());
+  //  System.out.println(sb);
     pw.close();
     System.out.println("finished");
  

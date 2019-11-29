@@ -16,9 +16,6 @@ public class Main {
 	static JMenuBar mb;
 	static JMenu x;
 	static JMenuItem m1, m2, m3;
-	private JButton btnNewButton;
-	private JButton btnGraphType;
-	private JComboBox start_Month, start_Date, end_Month, end_Date;
 	
 	private JFrame frame;
 
