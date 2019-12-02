@@ -77,6 +77,7 @@ class MainGraph_Polygonal extends JPanel {
 
 		// 종류Y축
 		g.setColor(Color.PINK);// 글자
+<<<<<<< HEAD
 		g.drawString("NO2", 5, 20);// 내용,x좌표,y좌표
 		g.setColor(Color.RED);
 		g.drawString("OZ", 5, 50);
@@ -87,6 +88,18 @@ class MainGraph_Polygonal extends JPanel {
 		g.setColor(Color.BLUE);
 		g.drawString("Fd", 5, 140);
 		g.setColor(Color.WHITE);
+=======
+		g.drawString("NO2", 5, 20);
+		g.setColor(Color.RED);
+		g.drawString("OZ", 5, 50);
+		g.setColor(Color.YELLOW);
+		g.drawString("CO2", 5, 80);
+		g.setColor(Color.GREEN);
+		g.drawString("SO2", 5, 110);
+		g.setColor(Color.BLUE);// 글자
+		g.drawString("Fd", 5, 140);
+		g.setColor(Color.WHITE);// 글자
+>>>>>>> refs/remotes/origin/master
 		g.drawString("Ud", 5, 170);
 
 		// 기간 1~7일 X축

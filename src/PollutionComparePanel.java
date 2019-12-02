@@ -37,13 +37,7 @@ public class PollutionComparePanel extends JPanel {
 		CompareNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		CompareNewLabel.setBounds(192, 10, 245, 30);
 		this.add(CompareNewLabel);
-		/*
-		 * JPanel first_compareGraph = new JPanel();//// 그래프 1 들어갈 패널////////////
-		 * first_compareGraph.setBounds(38, 131, 228, 200);
-		 * first_compareGraph.setBorder(BorderFactory.createLineBorder(Color.red));
-		 * Comparepanel.add(first_compareGraph); // first_compareGraph.add(new
-		 * JLabel("NO2"));
-		 */
+		
 		JLabel fisrt_compareLabel = new JLabel("지역선택A");
 		fisrt_compareLabel.setBounds(38, 64, 63, 15);
 		this.add(fisrt_compareLabel);
@@ -61,12 +55,7 @@ public class PollutionComparePanel extends JPanel {
 		JLabel lblNewLabel_2 = new JLabel("날짜 입력");
 		lblNewLabel_2.setBounds(38, 101, 63, 15);
 		this.add(lblNewLabel_2);
-		/*
-		 * JPanel second_comparGraph = new JPanel();//// 그래프 2들어갈 패널///////////
-		 * second_comparGraph.setBounds(382, 131, 228, 200);
-		 * second_comparGraph.setBorder(BorderFactory.createLineBorder(Color.red));
-		 * Comparepanel.add(second_comparGraph);
-		 */
+		
 		JLabel lblNewLabel_3 = new JLabel("지역선택B");
 		lblNewLabel_3.setBounds(360, 64, 68, 15);
 		this.add(lblNewLabel_3);
@@ -74,14 +63,6 @@ public class PollutionComparePanel extends JPanel {
 		JLabel lblNewLabel_4 = new JLabel("날짜 입력");
 		lblNewLabel_4.setBounds(360, 101, 68, 15);
 		this.add(lblNewLabel_4);
-		//
-
-//이식된 그래프 그려질 판넬
-
-//첫 비교 판넬에 추가해주기
-
-//      button.addActionListener(new DrawActionListener(text1, text2, text3, drawingPanel));
-
 		//
 
 		// 첫번째 날짜 입력
@@ -104,7 +85,11 @@ public class PollutionComparePanel extends JPanel {
 		// 적용버튼 리스너
 		btnCompareSet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				String data1,data2;
+=======
+				String data1,data2;//디비 끌어왔을때 사용할 최종 데이터 
+>>>>>>> refs/remotes/origin/master
 				String Area1,Area2;
 				String date1,date2;
 				Area1=(String) comboBoxArea1.getSelectedItem();
@@ -117,24 +102,19 @@ public class PollutionComparePanel extends JPanel {
 				System.out.println("비교패널 데이터2 입력 테스트: "+data2);
 				graph_1Set(0, 0);
 				graph_2Set(0, 0);
-				// 작동함
+				
 			}
 		});
-		//
 
 		this.setVisible(false); // Compare panel 페이지 감추기
 	}
 
 	private void graphInit() {
-		// 그래프 시도해보자
-		// 비교 그래프 그려줄 클래스1
-		// 이거랑 같은 거 하나 더만들어서 2로 쓸꺼야
+		
 		Graphpanel = new GraphPollution_Compare();//// 그래프 1 들어갈 패널////////////
 		Graphpanel.setBounds(38, 131, 228, 200);
 		Graphpanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		// 값 수정은 이런식으로
-		// Graphpanel.setFd(0);
-		// Graphpanel.setUd(30);
+		
 		this.add(Graphpanel);
 		Graphpanel.setVisible(true);
 
@@ -151,7 +131,11 @@ public class PollutionComparePanel extends JPanel {
 
 	// 작동함
 	public void graph_1Set(int fd, int ud) {
+<<<<<<< HEAD
 		// Graphpanel.setFd(fd);
+=======
+		// Graphpanel.setFd(fd);//추후 이런식으로 사용
+>>>>>>> refs/remotes/origin/master
 		// Graphpanel.setUd(ud);
 		Graphpanel.setFd(110);
 		Graphpanel.setUd(100);

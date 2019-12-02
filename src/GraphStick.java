@@ -46,8 +46,13 @@ class MainGraph_Stick extends JPanel {
 
 	public void setUd(int x) {
 		this.Ud = x;
+<<<<<<< HEAD
 	}
 	
+=======
+	}
+	
+>>>>>>> refs/remotes/origin/master
 
 
 	@Override
@@ -55,32 +60,32 @@ class MainGraph_Stick extends JPanel {
 		super.paintComponent(g);
 
 		g.setColor(Color.BLACK);// ±ÛÀÚ
-		g.drawString("NO2", 5, 20);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.drawString("NO2", 5, 20);
 		g.setColor(Color.ORANGE);
 		g.fillRect(80, 7, NO2, 20);
 
-		g.setColor(Color.BLACK);// ±ÛÀÚ
-		g.drawString("OZ", 5, 50);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.BLACK);
+		g.drawString("OZ", 5, 50);
 		g.setColor(Color.GREEN);
 		g.fillRect(80, 37, OZ, 20);
 
-		g.setColor(Color.BLACK);// ±ÛÀÚ
-		g.drawString("CO2", 5, 80);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.BLACK);
+		g.drawString("CO2", 5, 80);
 		g.setColor(Color.ORANGE);
 		g.fillRect(80, 67, CO2, 20);
 
-		g.setColor(Color.BLACK);// ±ÛÀÚ
-		g.drawString("SO2", 5, 110);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.BLACK);
+		g.drawString("SO2", 5, 110);
 		g.setColor(Color.GREEN);
 		g.fillRect(80, 97, SO2, 20);
 
-		g.setColor(Color.BLACK);// ±ÛÀÚ
-		g.drawString("Fd", 5, 140);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.BLACK);
+		g.drawString("Fd", 5, 140);
 		g.setColor(Color.ORANGE);
 		g.fillRect(80, 127, Fd, 20);
 
-		g.setColor(Color.BLACK);// ±ÛÀÚ
-		g.drawString("Ud", 5, 170);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.setColor(Color.BLACK);
+		g.drawString("Ud", 5, 170);
 		g.setColor(Color.GREEN);
 		g.fillRect(80, 157, Ud, 20);
 	}
