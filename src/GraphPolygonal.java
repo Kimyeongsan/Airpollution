@@ -86,17 +86,17 @@ class MainGraph_Polygonal extends JPanel {
 
 		// Á¾·ùYÃà
 		g.setColor(Color.PINK);// ±ÛÀÚ
-		g.drawString("NO2", 5, 20);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
-		g.setColor(Color.RED);// ±ÛÀÚ
-		g.drawString("OZ", 5, 50);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
-		g.setColor(Color.YELLOW);// ±ÛÀÚ
-		g.drawString("CO2", 5, 80);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
-		g.setColor(Color.GREEN);// ±ÛÀÚ
-		g.drawString("SO2", 5, 110);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.drawString("NO2", 5, 20);
+		g.setColor(Color.RED);
+		g.drawString("OZ", 5, 50);
+		g.setColor(Color.YELLOW);
+		g.drawString("CO2", 5, 80);
+		g.setColor(Color.GREEN);
+		g.drawString("SO2", 5, 110);
 		g.setColor(Color.BLUE);// ±ÛÀÚ
-		g.drawString("Fd", 5, 140);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.drawString("Fd", 5, 140);
 		g.setColor(Color.WHITE);// ±ÛÀÚ
-		g.drawString("Ud", 5, 170);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
+		g.drawString("Ud", 5, 170);
 
 		// ±â°£ 1~7ÀÏ XÃà
 		g.drawString("DAY1", 50, 200);// ³»¿ë,xÁÂÇ¥,yÁÂÇ¥
