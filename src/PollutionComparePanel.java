@@ -85,11 +85,9 @@ public class PollutionComparePanel extends JPanel {
 		// 적용버튼 리스너
 		btnCompareSet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				String data1,data2;
-=======
+
 				String data1,data2;//디비 끌어왔을때 사용할 최종 데이터 
->>>>>>> refs/remotes/origin/master
+
 				String Area1,Area2;
 				String date1,date2;
 				Area1=(String) comboBoxArea1.getSelectedItem();
@@ -131,11 +129,8 @@ public class PollutionComparePanel extends JPanel {
 
 	// 작동함
 	public void graph_1Set(int fd, int ud) {
-<<<<<<< HEAD
-		// Graphpanel.setFd(fd);
-=======
+
 		// Graphpanel.setFd(fd);//추후 이런식으로 사용
->>>>>>> refs/remotes/origin/master
 		// Graphpanel.setUd(ud);
 		Graphpanel.setFd(110);
 		Graphpanel.setUd(100);

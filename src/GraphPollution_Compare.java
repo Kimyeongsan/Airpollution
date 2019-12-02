@@ -15,12 +15,8 @@ public class GraphPollution_Compare extends JPanel {
 			this.Ud = x;
 		}
 
-		@Override
-<<<<<<< HEAD
-		public void paintComponent(Graphics g) { 
-=======
+		@Override		
 		public void paintComponent(Graphics g) {
->>>>>>> refs/remotes/origin/master
 			super.paintComponent(g);
 
 			g.setColor(Color.BLACK);

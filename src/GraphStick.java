@@ -46,14 +46,7 @@ class MainGraph_Stick extends JPanel {
 
 	public void setUd(int x) {
 		this.Ud = x;
-<<<<<<< HEAD
 	}
-	
-=======
-	}
-	
->>>>>>> refs/remotes/origin/master
-
 
 	@Override
 	public void paintComponent(Graphics g) { 
