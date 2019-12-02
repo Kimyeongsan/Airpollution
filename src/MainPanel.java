@@ -86,8 +86,6 @@ public class MainPanel extends JPanel{
 		end_Date.setSize(new Dimension(55, 20));
 		this.add(end_Date);
 
-		
-		///////////////////////////////////////////////////////////////누르면 작동은한다
 		JButton btnApply = new JButton("날짜 적용");
 		btnApply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

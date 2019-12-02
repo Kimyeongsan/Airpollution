@@ -27,8 +27,8 @@ public class Main {
 	private PollutionComparePanel pollutionComparePanel;
 	private RiskPollutionPanel RiskPollutionPanel;
 	
-	private void menuInit() {
-		////// 메뉴바 구현
+	private void menuInit() { // 메뉴바 구현
+		
 		mb = new JMenuBar();
 		x = new JMenu("Menu");
 

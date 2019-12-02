@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GraphPollution_Compare extends JPanel {
-	// 변수 데이터 여기에 선언
 		int Fd = 45;
 		int Ud = 100;
 		
@@ -17,7 +16,7 @@ public class GraphPollution_Compare extends JPanel {
 		}
 
 		@Override
-		public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
+		public void paintComponent(Graphics g) { 
 			super.paintComponent(g);
 
 			g.setColor(Color.BLACK);// 글자

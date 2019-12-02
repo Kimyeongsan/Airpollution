@@ -23,7 +23,6 @@ class MainGraph_Stick extends JPanel {
 	private int Fd=0;
 	private int Ud=0;
 
-// 대충 이걸로 조절하려고 했는데 작동안하쥬~~ 토요일 해야쥬~~
 
 	public void setNO2(int x) {
 		this.NO2 = x;
@@ -50,7 +49,7 @@ class MainGraph_Stick extends JPanel {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
+	public void paintComponent(Graphics g) { 
 		super.paintComponent(g);
 
 		g.setColor(Color.BLACK);// 글자

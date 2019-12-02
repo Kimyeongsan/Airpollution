@@ -53,7 +53,6 @@ public class RiskPollutionPanel extends JPanel {
 		lblNewLabel_2.setBounds(38, 101, 63, 15);
 		this.add(lblNewLabel_2);
 		
-		// 첫번째 날짜 입력
 		textField_D1 = new JTextField();
 		textField_D1.setBounds(113, 98, 96, 21);
 		this.add(textField_D1);

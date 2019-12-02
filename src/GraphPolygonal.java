@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -16,12 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-
-//메인에 들어가는 꺾은선 그래프
 class MainGraph_Polygonal extends JPanel {
-// 변수 데이터 여기에 선언
-// 최고 높10 최저 160
-//전체 높이(160) 제거시 최저<0  최고 150
 	
 	//초기 샘플 데이터
 	int[] NO2 = {0,0,0,0,0,0,0};
@@ -32,9 +26,6 @@ class MainGraph_Polygonal extends JPanel {
 	int[] Ud = {0,0,0,0,0,0,0};
 
 
-	
-	//데이터를 배열로 받아야할지 뭐 디비에서 어떻게 넘어오는지를 모르겠네
-	//스트링으로 받아서 ,로 나누는지
 	public void setNO2(String a) {
 			
 		String[] temp=a.split(",");
@@ -81,22 +72,22 @@ class MainGraph_Polygonal extends JPanel {
 	
 
 	@Override
-	public void paintComponent(Graphics g) { // drawXXX 말고 fillXXX는 내부가 채워짐.
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
 		// 종류Y축
 		g.setColor(Color.PINK);// 글자
 		g.drawString("NO2", 5, 20);// 내용,x좌표,y좌표
-		g.setColor(Color.RED);// 글자
-		g.drawString("OZ", 5, 50);// 내용,x좌표,y좌표
-		g.setColor(Color.YELLOW);// 글자
-		g.drawString("CO2", 5, 80);// 내용,x좌표,y좌표
-		g.setColor(Color.GREEN);// 글자
-		g.drawString("SO2", 5, 110);// 내용,x좌표,y좌표
-		g.setColor(Color.BLUE);// 글자
-		g.drawString("Fd", 5, 140);// 내용,x좌표,y좌표
-		g.setColor(Color.WHITE);// 글자
-		g.drawString("Ud", 5, 170);// 내용,x좌표,y좌표
+		g.setColor(Color.RED);
+		g.drawString("OZ", 5, 50);
+		g.setColor(Color.YELLOW);
+		g.drawString("CO2", 5, 80);
+		g.setColor(Color.GREEN);
+		g.drawString("SO2", 5, 110);
+		g.setColor(Color.BLUE);
+		g.drawString("Fd", 5, 140);
+		g.setColor(Color.WHITE);
+		g.drawString("Ud", 5, 170);
 
 		// 기간 1~7일 X축
 		g.drawString("DAY1", 50, 200);// 내용,x좌표,y좌표
