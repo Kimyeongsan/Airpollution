@@ -12,20 +12,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainPanel extends JPanel{
+public class MainPanel extends JPanel {
 	private JButton btnNewButton;
 	private JButton btnGraphType;
 	private MainGraph_Stick Graphpanel;
 	private MainGraph_Polygonal Graphpanel_2;
-	private JComboBox start_Month, start_Date, end_Month, end_Date;
-	
+	private JComboBox start_Month, start_Date, end_Month, end_Date,AreaBox;
+
 	public MainPanel(JFrame frame) {
 		super();
 		panelInit(frame);
 		graphInit();
 		graphInit_2();
 	}
-	
+
 	private void panelInit(JFrame frame) {
 		// 메인 화면 패널
 		this.setBackground(new Color(225, 240, 255));
@@ -67,13 +67,22 @@ public class MainPanel extends JPanel{
 		start_Date.setBounds(155, 285, 116, 21);
 		start_Date.setSize(new Dimension(55, 20));
 		this.add(start_Date);
+		
+		
+		JLabel lblSerch = new JLabel("지역 검색");
+		lblSerch.setBounds(27, 319, 57, 15);
+		this.add(lblSerch);
 
+		// sample list
+		String Arealist[] = { "강서구", "강북구", "강동구" };
+		AreaBox = new JComboBox(Arealist);
+		AreaBox.setBounds(96, 317, 116, 19);
+		this.add(AreaBox);
+		/*
 		// 기간(~) 라벨
 		JLabel termLabel = new JLabel(" ~ ");
 		termLabel.setBounds(210, 288, 57, 15);
 		this.add(termLabel);
-
-	
 
 		// 끝 날짜
 		end_Month = new JComboBox(MonthList);
@@ -85,49 +94,117 @@ public class MainPanel extends JPanel{
 		end_Date.setBounds(284, 285, 116, 21);
 		end_Date.setSize(new Dimension(55, 20));
 		this.add(end_Date);
-
 		
-		///////////////////////////////////////////////////////////////누르면 작동은한다
+		*/
+
 		JButton btnApply = new JButton("날짜 적용");
 		btnApply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//샘플 데이터,
-				//디비 연동시 get 메소드 만들어서 집어넣어주자
 				
-				//샘플 그래프 1 설정
-			Graphpanel.setNO2(22);
-			Graphpanel.setOZ(75);
-			Graphpanel.setCO2(140);
-			Graphpanel.setSO2(25);
-			Graphpanel.setFd(155);
-			Graphpanel.setUd(130);
-			Graphpanel.setVisible(true);
-			
-			
-			//샘플 그래프2 설정
-			Graphpanel_2.setNO2("0,11,12,22,21,33,50");
-			Graphpanel_2.setOZ("10,13,15,12,25,40,40");
-			Graphpanel_2.setCO2("50,101,52,102,51,13,30");
-			Graphpanel_2.setSO2("70,31,82,62,91,23,79");
-			Graphpanel_2.setNO2("30,90,60,122,51,73,20");
-			Graphpanel_2.setNO2("90,51,22,32,31,63,100");
-			//리페인팅
-			Graphpanel.repaint();
-			Graphpanel_2.repaint();
-			
-			
-			//버튼 눌렀을떄 엉뚱한 패널 나오는거 방지
-			if(Graphpanel_2.isVisible()==true) {
-				Graphpanel.setVisible(false);
-			}else if(Graphpanel.isVisible()==true) {
-				Graphpanel_2.setVisible(false);
-			}
-			
-			
+				String Raw_date;//날짜 값 받아와서 수정해야하는 원본
+				String date;//가공된 날짜
+				String Area;//지역 
+				String temp_day;//날짜 가공시 사용하는 임시 변수
+				String data;//날짜+지역
+	
+				// 샘플 데이터,
+				// 디비 연동시 get 메소드 만들어서 집어넣어주자
+
+				// 샘플 그래프 1 설정
+				Graphpanel.setNO2(22);
+				Graphpanel.setOZ(75);
+				Graphpanel.setCO2(140);
+				Graphpanel.setSO2(25);
+				Graphpanel.setFd(155);
+				Graphpanel.setUd(130);
+				Graphpanel.setVisible(true);
+
+				// 샘플 그래프2 설정
+				Graphpanel_2.setNO2("0,11,12,22,21,33,50");
+				Graphpanel_2.setOZ("10,13,15,12,25,40,40");
+				Graphpanel_2.setCO2("50,101,52,102,51,13,30");
+				Graphpanel_2.setSO2("70,31,82,62,91,23,79");
+				Graphpanel_2.setNO2("30,90,60,122,51,73,20");
+				Graphpanel_2.setNO2("90,51,22,32,31,63,100");
+				// 리페인팅
+				Graphpanel.repaint();
+				Graphpanel_2.repaint();
+				// 버튼 눌렀을떄 엉뚱한 패널 나오는거 방지
+				if (Graphpanel_2.isVisible() == true) {
+					Graphpanel.setVisible(false);
+				} else if (Graphpanel.isVisible() == true) {
+					Graphpanel_2.setVisible(false);
+				}
+				
+				//날짜 값 받기 
+				Raw_date=(String) start_Month.getSelectedItem();
+				Raw_date=Raw_date+(String) start_Date.getSelectedItem();
+			//	System.out.println(date);//현재 0월0일 이런 형식으로 들어옴 수정 필요
+				//date에 한글 제거
+				if(Raw_date.length()==6) {//두월 두일이인경우 년도만 추가
+					date = Raw_date.replaceAll("[^0-9]","");
+					date="2018"+date;
+				//	System.out.println(date);
+				}else if(Raw_date.length()==4) {//일월 일일 인경우도 년도만 추가
+					date = Raw_date.replaceAll("월","0");
+					date="2018"+"0"+date;
+					date=date.replaceAll("일", "");
+				//	System.out.println(date);
+					
+					
+					
+					
+					//여기서 부터 진짜 
+					//수정중
+				}else{
+					String[] temp = Raw_date.split("월");
+					String tempM;
+					if(temp[0].length()!=2) {//일월이면 0추가해주기
+						tempM="0"+temp[0];
+					}else {
+						tempM=temp[0];//이월이면 그냥 가기
+					}
+					//tempM=한개짜리 월 잘라서 앞에 0붙힌 상태
+					//System.out.println(tempM);//test
+					
+					
+					temp_day=(String) start_Date.getSelectedItem();
+					//System.out.println(temp_day);//test
+					temp = temp_day.split("일");
+					if(temp[0].length()!=2) {
+						temp_day="0"+temp[0];
+					}else {
+						temp_day=temp[0];
+					}
+					date="2018"+tempM+temp_day;
+					//System.out.println(date);//최종 테스트 굿
+					
+					
+					/*
+					//이제 일부분
+					String[] temp_day=Raw_date.split("일");
+					if(temp_day[2].length()!=3) {//일월이면 0추가해주기
+						tempM=tempM+"0"+temp_day[2];
+					}else {
+						tempM=tempM+temp_day[2];//이월이면 그냥 가기
+					}
+					date=tempM;
+					System.out.println(date);
+					*/
+				}
+				
+				
+				//date의 각 숫자가<10인경우 앞에 0추가
+				//2018+date
+				
+				//지역값 받기
+				Area=(String) AreaBox.getSelectedItem();
+				data=date+","+Area;
+				System.out.println(data);
 			}
 		});
 
-		btnApply.setBounds(343, 284, 97, 23);
+		btnApply.setBounds(498, 239, 126, 23);
 		this.add(btnApply);
 
 		// 막대 그래프
@@ -136,24 +213,19 @@ public class MainPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Graphpanel.setVisible(true);
 				Graphpanel_2.setVisible(false);
-				
-				
 			}
 		});
-		btnNewButton.setBounds(498, 206, 126, 23);
+		btnNewButton.setBounds(498, 176, 126, 23);
 		this.add(btnNewButton);
 
-		// 꺾은선
-		// 그래프///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		btnGraphType = new JButton("꺾은선 그래프");
 		btnGraphType.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphpanel.setVisible(false);
 				Graphpanel_2.setVisible(true);
-				
 			}
 		});
-		btnGraphType.setBounds(498, 239, 126, 23);
+		btnGraphType.setBounds(498, 209, 126, 23);
 		this.add(btnGraphType);
 
 		// 종료 버튼
@@ -163,18 +235,10 @@ public class MainPanel extends JPanel{
 				System.exit(0);
 			}
 		});
-		btnExit.setBounds(527, 327, 97, 23);
+		btnExit.setBounds(498, 146, 126, 23);
 		this.add(btnExit);
 
-		JLabel lblSerch = new JLabel("지역 검색");
-		lblSerch.setBounds(27, 319, 57, 15);
-		this.add(lblSerch);
-
-		// sample list
-		String Arealist[] = { "강서구", "강북구", "강동구" };
-		JComboBox comboBox = new JComboBox(Arealist);
-		comboBox.setBounds(96, 317, 116, 19);
-		this.add(comboBox);
+		
 	}
 
 	private void graphInit() {
@@ -182,17 +246,8 @@ public class MainPanel extends JPanel{
 		Graphpanel.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
 		Graphpanel.setBounds(27, 48, 447, 214);
 		this.add(Graphpanel);
-
-	/*
-		Graphpanel.setNO2(22);
-		Graphpanel.setOZ(75);
-		Graphpanel.setCO2(140);
-		Graphpanel.setSO2(25);
-		Graphpanel.setFd(155);
-		Graphpanel.setUd(130);
-		*/
 	}
-	
+
 	private void graphInit_2() {
 		Graphpanel_2 = new MainGraph_Polygonal();
 		Graphpanel_2.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
@@ -203,12 +258,6 @@ public class MainPanel extends JPanel{
 		Graphpanel_2.setBounds(27, 48, 447, 214);
 		Graphpanel_2.setBackground(Color.DARK_GRAY);
 		this.add(Graphpanel_2);
-		//수정은 이런식으로.
-		//int temp[]= {100,120,40,100,80,60,60};
-		//((Draw_M_Graph2) Graphpanel2).setNO2(temp);
-		
 		Graphpanel_2.setVisible(false);
-		
 	}
-	
 }

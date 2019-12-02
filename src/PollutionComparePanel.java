@@ -145,7 +145,6 @@ public class PollutionComparePanel extends JPanel {
 
 	// ¿€µø«‘
 	public void graph_1Set(int fd, int ud) {
-
 		// Graphpanel.setFd(fd);
 		// Graphpanel.setUd(ud);
 		Graphpanel.setFd(110);

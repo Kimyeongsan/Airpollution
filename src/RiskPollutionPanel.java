@@ -1,10 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Font;
-
 import java.awt.image.BufferedImage;
-
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
