@@ -200,7 +200,7 @@ public class MainPanel extends JPanel {
 				//지역값 받기
 				Area=(String) AreaBox.getSelectedItem();
 				data=date+","+Area;
-				System.out.println(data);
+				System.out.println("메인패널 데이터 입력 테스트: "+data);
 			}
 		});
 

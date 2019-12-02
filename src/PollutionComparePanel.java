@@ -50,11 +50,11 @@ public class PollutionComparePanel extends JPanel {
 
 		//// 지역선택1
 		String Arealist[] = { "강서구", "강북구", "강동구" };
-		JComboBox comboBoxArea1 = new JComboBox(Arealist);
+		final JComboBox comboBoxArea1 = new JComboBox(Arealist);
 		comboBoxArea1.setBounds(113, 61, 96, 21);
 		this.add(comboBoxArea1);
 		//// 지역선택2
-		JComboBox comboBoxArea2 = new JComboBox(Arealist);
+		final JComboBox comboBoxArea2 = new JComboBox(Arealist);
 		comboBoxArea2.setBounds(440, 61, 96, 21);
 		this.add(comboBoxArea2);
 
@@ -96,11 +96,6 @@ public class PollutionComparePanel extends JPanel {
 		this.add(textField_D2);
 		textField_D2.setColumns(10);
 
-		// 수정함수
-
-		//
-
-		// 적용버튼 생성 ^^7
 		JButton btnCompareSet = new JButton("적용");
 
 		// 적용버튼 위치 및 판넬에 추가
@@ -109,6 +104,17 @@ public class PollutionComparePanel extends JPanel {
 		// 적용버튼 리스너
 		btnCompareSet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String data1,data2;
+				String Area1,Area2;
+				String date1,date2;
+				Area1=(String) comboBoxArea1.getSelectedItem();
+				Area2=(String) comboBoxArea2.getSelectedItem();
+				date1=textField_D1.getText();//
+				date2=textField_D2.getText();
+				data1=date1+","+Area1;
+				data2=date2+","+Area2;
+				System.out.println("비교패널 데이터1 입력 테스트: "+data1);
+				System.out.println("비교패널 데이터2 입력 테스트: "+data2);
 				graph_1Set(0, 0);
 				graph_2Set(0, 0);
 				// 작동함
