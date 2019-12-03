@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -11,13 +13,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Database.PollutionDB;
+
 public class MainPanel extends JPanel {
    private JButton btnNewButton;
    private JButton btnGraphType;
    private MainGraph_Stick Graphpanel;
    private MainGraph_Polygonal Graphpanel_2;
    private JComboBox start_Month, start_Date, end_Month, end_Date, AreaBox;
-//깃 에러나서 주석으로 추가
+
    public MainPanel(JFrame frame) {
       super();
       panelInit(frame);
@@ -72,7 +76,10 @@ public class MainPanel extends JPanel {
       this.add(lblSerch);
 
       // sample list
-      String Arealist[] = { "강서구", "강북구", "강동구" };
+      String Arealist[] = { "강남구", "강남대로", "강동구", "강변북로", "강북구", "강서구", "공항대로", "관악구", "광진구", "구로구", "금천구",
+    		  "노원구", "도봉구", "도산대로", "동대문구", "동작구", "동작대로", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "신촌로", "양천구", "영등포구", "영등포로",
+    		  "용산구", "은평구", "정릉로", "종로", "종로구", "중구", "중랑구", "천호대로", "청계천로", "한강대로", "홍릉로", "화랑로" };
+ 
       AreaBox = new JComboBox(Arealist);
       AreaBox.setBounds(96, 317, 116, 19);
       this.add(AreaBox);
@@ -80,42 +87,16 @@ public class MainPanel extends JPanel {
 
       JButton btnApply = new JButton("날짜 적용");
       btnApply.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
 
+   
+         public void actionPerformed(ActionEvent e) {
             String Raw_date;// 날짜 값 받아와서 수정해야하는 원본
             String date;// 가공된 날짜
             String Area;// 지역
             String temp_day;// 날짜 가공시 사용하는 임시 변수
             String data;// 날짜+지역 디비랑 비교할때 사용할 최종 데이터
-
-            // 샘플 데이터,
-            // 디비 연동시 get 메소드 만들어서 집어넣어주자
-
-            // 샘플 그래프 1 설정
-            Graphpanel.setNO2(22);
-            Graphpanel.setOZ(75);
-            Graphpanel.setCO2(140);
-            Graphpanel.setSO2(25);
-            Graphpanel.setFd(155);
-            Graphpanel.setUd(130);
-            Graphpanel.setVisible(true);
-
-            // 샘플 그래프2 설정
-            Graphpanel_2.setNO2("0,11,12,22,21,33,50");
-            Graphpanel_2.setOZ("10,13,15,12,25,40,40");
-            Graphpanel_2.setCO2("50,101,52,102,51,13,30");
-            Graphpanel_2.setSO2("70,31,82,62,91,23,79");
-            Graphpanel_2.setNO2("30,90,60,122,51,73,20");
-            Graphpanel_2.setNO2("90,51,22,32,31,63,100");
-            // 리페인팅
-            Graphpanel.repaint();
-            Graphpanel_2.repaint();
-            // 버튼 눌렀을떄 엉뚱한 패널 나오는거 방지
-            if (Graphpanel_2.isVisible() == true) {
-               Graphpanel.setVisible(false);
-            } else if (Graphpanel.isVisible() == true) {
-               Graphpanel_2.setVisible(false);
-            }
+            
+            ResultSet rs;
 
             // 날짜 값 받기
             Raw_date = (String) start_Month.getSelectedItem();
@@ -140,8 +121,8 @@ public class MainPanel extends JPanel {
                   tempM = temp[0];// 이월이면 그냥 가기
                }
                temp_day = (String) start_Date.getSelectedItem();
-               // System.out.println(temp_day);//test
                temp = temp_day.split("일");
+               
                if (temp[0].length() != 2) {
                   temp_day = "0" + temp[0];
                } else {
@@ -151,9 +132,47 @@ public class MainPanel extends JPanel {
             }
             // 지역값 받기
             Area = (String) AreaBox.getSelectedItem();
-            data = date + "," + Area;
-            System.out.println("메인패널 데이터 입력 테스트: " + data);
+            
+            PollutionDB pollution = new PollutionDB();
+            rs = pollution.getPollutionDataWith(date, Area);
+        	
+
+            try {
+				rs.next();
+				Graphpanel.setNO2((int)(Double.parseDouble(rs.getString("NO2")) * 2000));
+	            Graphpanel.setOZ((int)(Double.parseDouble(rs.getString("O3"))* 2000));
+	            Graphpanel.setCO2((int)(Double.parseDouble(rs.getString("CO2"))* 500));
+	            Graphpanel.setSO2((int)(Double.parseDouble(rs.getString("SO2"))* 2000));
+	            Graphpanel.setFd((int)Double.parseDouble(rs.getString("FINEDUST")));
+	            Graphpanel.setUd((int)Double.parseDouble(rs.getString("TINYDUST")));
+	            Graphpanel.setVisible(true);
+	            
+	            // 샘플 그래프2 설정
+	            Graphpanel_2.setNO2("0,11,12,22,21,33,50");
+	            Graphpanel_2.setOZ("10,13,15,12,25,40,40");
+	            Graphpanel_2.setCO2("50,101,52,102,51,13,30");
+	            Graphpanel_2.setSO2("70,31,82,62,91,23,79");
+	            Graphpanel_2.setNO2("30,90,60,122,51,73,20");
+	            Graphpanel_2.setNO2("90,51,22,32,31,63,100");
+	            // 리페인팅
+	            Graphpanel.repaint();
+	            Graphpanel_2.repaint();
+	            // 버튼 눌렀을떄 엉뚱한 패널 나오는거 방지
+	            if (Graphpanel_2.isVisible() == true) {
+	               Graphpanel.setVisible(false);
+	            } else if (Graphpanel.isVisible() == true) {
+	               Graphpanel_2.setVisible(false);
+	            }
+	            
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}           
          }
+
+		private String String(JComboBox areaBox) {
+			return null;
+		}
       });
 
       btnApply.setBounds(498, 239, 126, 23);
@@ -187,7 +206,7 @@ public class MainPanel extends JPanel {
             System.exit(0);
          }
       });
-      btnExit.setBounds(498, 146, 126, 23);
+      btnExit.setBounds(498, 271, 126, 23);
       this.add(btnExit);
 
    }

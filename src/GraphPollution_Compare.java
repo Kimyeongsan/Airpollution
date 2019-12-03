@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GraphPollution_Compare extends JPanel {
-		int Fd = 45;
-		int Ud = 100;
+		private int Fd = 0;
+		private int Ud = 0;
 		
 		public void setFd(int x) {
 			this.Fd = x;

@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 
 class MainGraph_Stick extends JPanel {
 	
-
 	private int NO2=0;
 	private int OZ=0;
 	private int CO2=0;

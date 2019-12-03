@@ -11,7 +11,7 @@ import java.sql.ResultSet;
  public static void main(String[] args) {
  
    try {
-    PrintWriter pw= new PrintWriter(new File("C:\\Users\\YeongSan\\Desktop\\Pollution.CSV"));
+//    PrintWriter pw= new PrintWriter(new File("C:\\Users\\YeongSan\\Desktop\\Pollution.CSV"));
     StringBuilder sb=new StringBuilder();
  
  
@@ -40,10 +40,8 @@ import java.sql.ResultSet;
      sb.append(rs.getString("TINYDUST"));
      sb.append("\n");
     }
- 
-    pw.write(sb.toString());
-  //  System.out.println(sb);
-    pw.close();
+
+    System.out.println(sb);
     System.out.println("finished");
  
    } catch (Exception e) {

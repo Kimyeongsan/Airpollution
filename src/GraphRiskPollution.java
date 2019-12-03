@@ -4,9 +4,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GraphRiskPollution extends JPanel {
-
-	int Fd = 45;
-	int Ud = 100;
+	int Fd = 0;
+	int Ud = 0;
 
 	public void setFd(int x) {
 		this.Fd = x;
