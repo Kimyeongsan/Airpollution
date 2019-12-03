@@ -11,7 +11,6 @@ import java.sql.ResultSet;
  public static void main(String[] args) {
  
    try {
-//    PrintWriter pw= new PrintWriter(new File("C:\\Users\\YeongSan\\Desktop\\Pollution.CSV"));
     StringBuilder sb=new StringBuilder();
  
  
@@ -38,10 +37,9 @@ import java.sql.ResultSet;
      sb.append(rs.getString("FINEDUST"));
      sb.append(",");
      sb.append(rs.getString("TINYDUST"));
-     sb.append("\n");
+     sb.append("\r\n");
     }
 
-    System.out.println(sb);
     System.out.println("finished");
  
    } catch (Exception e) {

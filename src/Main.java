@@ -16,9 +16,6 @@ public class Main {
 	static JMenuBar mb;
 	static JMenu x;
 	static JMenuItem m1, m2, m3;
-	private JButton btnNewButton;
-	private JButton btnGraphType;
-	private JComboBox start_Month, start_Date, end_Month, end_Date;
 	
 	private JFrame frame;
 
@@ -29,7 +26,10 @@ public class Main {
 	private void menuInit() { // 메뉴바 구현
 		
 		mb = new JMenuBar();
+		mb.setBackground(new Color(0, 35, 110));
 		x = new JMenu("Menu");
+		x.setForeground(Color.WHITE);
+		x.setFont(new Font("돋움", Font.BOLD, 15));
 
 		m1 = new JMenuItem("Main 화면");
 		m2 = new JMenuItem("지역별 오염도 비교");

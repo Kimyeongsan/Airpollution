@@ -16,7 +16,7 @@ public class GraphRiskPollution extends JPanel {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) { 
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
 		g.setColor(Color.BLACK);
@@ -28,5 +28,27 @@ public class GraphRiskPollution extends JPanel {
 		g.drawString("초미세먼지", 5, 100);
 		g.setColor(Color.GREEN);
 		g.fillRect(80, 87, Ud, 20);
+
+		// 아래 기준라인
+		g.setColor(Color.BLACK);// 글자
+		g.drawString("0", 80, 145);// 내용 x y 80, y+140 기준
+		g.setColor(Color.BLACK);
+		g.drawString("10", 105, 145);
+		g.setColor(Color.BLACK);
+		g.drawString("20", 138, 145);
+		g.setColor(Color.BLACK);
+		g.drawString("30", 170, 145);
+		g.setColor(Color.BLACK);
+		g.drawString("40", 200, 145);
+
+		// 밑라인
+		g.drawLine(80, 130, 207, 130);
+
+		// 깔짝라인
+		int xx = 80;
+		for (int i = 0; i <= 5; i++) {
+			g.drawLine(xx, 125, xx, 130);
+			xx = xx + 32;
+		}
 	}
 }

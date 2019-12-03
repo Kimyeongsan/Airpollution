@@ -20,7 +20,7 @@ public class MainPanel extends JPanel {
    private JButton btnGraphType;
    private MainGraph_Stick Graphpanel;
    private MainGraph_Polygonal Graphpanel_2;
-   private JComboBox start_Month, start_Date, end_Month, end_Date, AreaBox;
+   private JComboBox main_month, main_date, AreaBox;
 
    public MainPanel(JFrame frame) {
       super();
@@ -38,26 +38,26 @@ public class MainPanel extends JPanel {
 
       // 메인 화면 라벨
       JLabel tilteLabel = new JLabel("Air Pollution");
-      tilteLabel.setFont(new Font("Arial", Font.BOLD, 30));
+      tilteLabel.setFont(new Font("Arial", Font.BOLD, 35));
       tilteLabel.setForeground(new Color(0, 35, 110));
       tilteLabel.setHorizontalAlignment(JLabel.CENTER);
-      tilteLabel.setBounds(180, 10, 270, 28);
+      tilteLabel.setBounds(70, 4, 500, 40);
       this.add(tilteLabel);
 
       JLabel lblDay = new JLabel("날짜 입력");
       lblDay.setBounds(27, 288, 57, 15);
       this.add(lblDay);
 
-      // 시작 날짜
+      // 월
       String MonthList[] = new String[12];
       for (int m = 1; m < 13; m++) {
          MonthList[m - 1] = Integer.toString(m) + "월";
       }
 
-      start_Month = new JComboBox(MonthList);
-      start_Month.setBounds(96, 285, 116, 21);
-      start_Month.setSize(new Dimension(55, 20));
-      this.add(start_Month);
+      main_month = new JComboBox(MonthList);
+      main_month.setBounds(96, 285, 116, 21);
+      main_month.setSize(new Dimension(55, 20));
+      this.add(main_month);
 
       // 날짜 리스트
       String DateList[] = new String[31];
@@ -65,11 +65,11 @@ public class MainPanel extends JPanel {
          DateList[d - 1] = Integer.toString(d) + "일";
       }
 
-      // 시작 날짜
-      start_Date = new JComboBox(DateList);
-      start_Date.setBounds(155, 285, 116, 21);
-      start_Date.setSize(new Dimension(55, 20));
-      this.add(start_Date);
+      // 일
+      main_date = new JComboBox(DateList);
+      main_date.setBounds(155, 285, 116, 21);
+      main_date.setSize(new Dimension(55, 20));
+      this.add(main_date);
 
       JLabel lblSerch = new JLabel("지역 검색");
       lblSerch.setBounds(27, 319, 57, 15);
@@ -90,51 +90,25 @@ public class MainPanel extends JPanel {
 
    
          public void actionPerformed(ActionEvent e) {
-            String Raw_date;// 날짜 값 받아와서 수정해야하는 원본
-            String date;// 가공된 날짜
+
             String Area;// 지역
-            String temp_day;// 날짜 가공시 사용하는 임시 변수
             String data;// 날짜+지역 디비랑 비교할때 사용할 최종 데이터
             
             ResultSet rs;
 
             // 날짜 값 받기
-            Raw_date = (String) start_Month.getSelectedItem();
-            Raw_date = Raw_date + (String) start_Date.getSelectedItem();
-
-            // date에 한글 제거
-            if (Raw_date.length() == 6) {// 두월 두일이인경우 년도만 추가
-               date = Raw_date.replaceAll("[^0-9]", "");
-               date = "2018" + date;
-
-            } else if (Raw_date.length() == 4) {// 일월 일일 인경우도 년도만 추가
-               date = Raw_date.replaceAll("월", "0");
-               date = "2018" + "0" + date;
-               date = date.replaceAll("일", "");
-
-            } else {
-               String[] temp = Raw_date.split("월");
-               String tempM;
-               if (temp[0].length() != 2) {// 일월이면 0추가해주기
-                  tempM = "0" + temp[0];
-               } else {
-                  tempM = temp[0];// 이월이면 그냥 가기
-               }
-               temp_day = (String) start_Date.getSelectedItem();
-               temp = temp_day.split("일");
-               
-               if (temp[0].length() != 2) {
-                  temp_day = "0" + temp[0];
-               } else {
-                  temp_day = temp[0];
-               }
-               date = "2018" + tempM + temp_day;
-            }
-            // 지역값 받기
-            Area = (String) AreaBox.getSelectedItem();
+            int s_month = main_month.getSelectedIndex() + 1;
+            int s_date = main_date.getSelectedIndex() + 1;
+            //선택한 날짜에 오류가 있는지 확인
+            CheckDate main_check = new CheckDate();
+            main_check.setDate(s_month, s_date);
             
+            //지역값 받아오기
+            Area = (String) AreaBox.getSelectedItem();
+
+            //데이터 불러오기
             PollutionDB pollution = new PollutionDB();
-            rs = pollution.getPollutionDataWith(date, Area);
+            rs = pollution.getPollutionDataWith(main_check.getDate(), Area);
         	
 
             try {
@@ -144,7 +118,7 @@ public class MainPanel extends JPanel {
 	            Graphpanel.setCO2((int)(Double.parseDouble(rs.getString("CO2"))* 500));
 	            Graphpanel.setSO2((int)(Double.parseDouble(rs.getString("SO2"))* 2000));
 	            Graphpanel.setFd((int)Double.parseDouble(rs.getString("FINEDUST")));
-	            Graphpanel.setUd((int)Double.parseDouble(rs.getString("TINYDUST")));
+	            Graphpanel.setUd((int)Double.parseDouble(rs.getString("TINYDUST")));	            
 	            Graphpanel.setVisible(true);
 	            
 	            // 샘플 그래프2 설정
@@ -214,16 +188,13 @@ public class MainPanel extends JPanel {
    private void graphInit() {
       Graphpanel = new MainGraph_Stick();
       Graphpanel.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
+      Graphpanel.setBackground(Color.white);
       Graphpanel.setBounds(27, 48, 447, 214);
       this.add(Graphpanel);
    }
 
    private void graphInit_2() {
       Graphpanel_2 = new MainGraph_Polygonal();
-      Graphpanel_2.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
-      Graphpanel_2.setBounds(27, 48, 447, 214);
-      this.add(Graphpanel_2);
-
       Graphpanel_2.setBorder(BorderFactory.createLineBorder(new Color(0, 35, 110)));
       Graphpanel_2.setBounds(27, 48, 447, 214);
       Graphpanel_2.setBackground(Color.DARK_GRAY);

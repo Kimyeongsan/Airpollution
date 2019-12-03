@@ -1,5 +1,5 @@
-
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,18 +38,18 @@ public class RiskPollutionPanel extends JPanel {
 
 		JLabel PollutionLabel = new JLabel("Local Pollution degree of risk");
 
-		PollutionLabel.setFont(new Font("Arial", Font.BOLD, 25));
-		PollutionLabel.setForeground(Color.BLUE);
+		PollutionLabel.setFont(new Font("Arial", Font.BOLD, 35));
+		PollutionLabel.setForeground(new Color(0, 35, 110));
 		PollutionLabel.setHorizontalAlignment(JLabel.CENTER);
-		PollutionLabel.setBounds(118, 10, 393, 28);
+		PollutionLabel.setBounds(70, 5, 500, 40);
 		this.add(PollutionLabel);
 
 		String Arealist[] = { "강남구", "강남대로", "강동구", "강변북로", "강북구", "강서구", "공항대로", "관악구", "광진구", "구로구", "금천구", "노원구",
 				"도봉구", "도산대로", "동대문구", "동작구", "동작대로", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "신촌로", "양천구", "영등포구",
 				"영등포로", "용산구", "은평구", "정릉로", "종로", "종로구", "중구", "중랑구", "천호대로", "청계천로", "한강대로", "홍릉로", "화랑로" };
 
-		JLabel risk_compareLabel = new JLabel("지역선택A");
-		risk_compareLabel.setBounds(38, 64, 63, 15);
+		JLabel risk_compareLabel = new JLabel("지역 선택");
+		risk_compareLabel.setBounds(38, 70, 100, 15);
 		this.add(risk_compareLabel);
 
 		riskBoxArea = new JComboBox(Arealist);
@@ -59,38 +59,51 @@ public class RiskPollutionPanel extends JPanel {
 		JLabel risk_date_Label = new JLabel("날짜 입력");
 		risk_date_Label.setBounds(38, 101, 63, 15);
 		this.add(risk_date_Label);
+		
+		// 시작 날짜
+		String MonthList[] = new String[12];
+		for (int m = 1; m < 13; m++) {
+			MonthList[m - 1] = Integer.toString(m) + "월";
+		}
+		// 날짜 리스트
+		String DateList[] = new String[31];
+		for (int d = 1; d < 32; d++) {
+			DateList[d - 1] = Integer.toString(d) + "일";
+		}
 
-		textField = new JTextField();
-		textField.setBounds(113, 98, 96, 21);
-		this.add(textField);
-		textField.setColumns(10);
-
+		JComboBox risk_month = new JComboBox(MonthList);
+		risk_month.setBounds(110, 98, 96, 21);
+		risk_month.setSize(new Dimension(55, 20));
+		this.add(risk_month);
+		
+		JComboBox risk_date = new JComboBox(DateList);
+		risk_date.setBounds(170, 98, 96, 21);
+		risk_date.setSize(new Dimension(55, 20));
+		this.add(risk_date);
+		
 		JButton btnCompareSet = new JButton("적용");
-		btnCompareSet.setBounds(215, 98, 65, 20);
+		btnCompareSet.setBounds(235, 98, 65, 20);
 		this.add(btnCompareSet);
 		// 적용버튼 리스너
 		btnCompareSet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String data;
 				String Area;
-				String date;
 
 				ResultSet rs;
 
-				date = textField.getText();
-
 				// 날짜 값 받기
-				data = (String) textField.getSelectedText();
+	            int s_month = risk_month.getSelectedIndex() + 1;
+	            int s_date = risk_date.getSelectedIndex() + 1;
+	            //선택한 날짜에 오류가 있는지 확인
+	            CheckDate risk_check = new CheckDate();
+	            risk_check.setDate(s_month, s_date);
 
 				// 지역값 받기
 				Area = (String) riskBoxArea.getSelectedItem();
 
-				data = date + "," + Area;
-
 				PollutionDB pollution = new PollutionDB();
-
-				rs = pollution.getPollutionDataWith(date, Area);
-
+				rs = pollution.getPollutionDataWith(risk_check.getDate(), Area);
+				
 				try {
 					rs.next();
 
@@ -117,6 +130,7 @@ public class RiskPollutionPanel extends JPanel {
 	private void graphInit() {
 		GraphRiskpanel = new GraphRiskPollution();
 		GraphRiskpanel.setBounds(18, 136, 228, 200);
+		GraphRiskpanel.setBackground(Color.white);
 		GraphRiskpanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		this.add(GraphRiskpanel);
 		GraphRiskpanel.setVisible(true);
