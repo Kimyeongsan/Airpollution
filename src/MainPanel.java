@@ -94,7 +94,7 @@ public class MainPanel extends JPanel {
             String Area;// 지역
             String data;// 날짜+지역 디비랑 비교할때 사용할 최종 데이터
             
-            ResultSet rs;
+            ResultSet rs, rs1;
 
             // 날짜 값 받기
             int s_month = main_month.getSelectedIndex() + 1;
@@ -108,7 +108,8 @@ public class MainPanel extends JPanel {
 
             //데이터 불러오기
             PollutionDB pollution = new PollutionDB();
-            rs = pollution.getPollutionDataWith(main_check.getDate(), Area);
+            rs = pollution.getPollutionDataWith_St(main_check.getDate(), Area);
+            rs1 = pollution.getPollutionDataWith_Pg(main_check.getDate(), Area);
         	
 
             try {
@@ -120,15 +121,29 @@ public class MainPanel extends JPanel {
 	            Graphpanel.setFd((int)Double.parseDouble(rs.getString("FINEDUST")));
 	            Graphpanel.setUd((int)Double.parseDouble(rs.getString("TINYDUST")));	            
 	            Graphpanel.setVisible(true);
+
+	            String NO2 = "";
+	            String OZ = "";
+	            String CO2 = "";
+	            String SO2 = "";
+	            String Fd = "";
+	            String Ud = "";
 	            
-	            // 샘플 그래프2 설정
-	            Graphpanel_2.setNO2("0,11,12,22,21,33,50");
-	            Graphpanel_2.setOZ("10,13,15,12,25,40,40");
-	            Graphpanel_2.setCO2("50,101,52,102,51,13,30");
-	            Graphpanel_2.setSO2("70,31,82,62,91,23,79");
-	            Graphpanel_2.setNO2("30,90,60,122,51,73,20");
-	            Graphpanel_2.setNO2("90,51,22,32,31,63,100");
-	            // 리페인팅
+	            for(int i = 0 ; rs1.next() && i < 7 ; i ++) {
+	            	NO2 += rs1.getString("NO2") + ",";
+	            	OZ += rs1.getString("O3") + ",";
+	            	CO2 += rs1.getString("CO2") + ",";
+	            	SO2 += rs1.getString("SO2") + ",";
+	            	Fd += rs1.getString("FINEDUST") + ",";
+	            	Ud += rs1.getString("TINYDUST") + ",";
+	            }
+	            Graphpanel_2.setNO2(NO2);
+	            Graphpanel_2.setOZ(OZ);
+	            Graphpanel_2.setCO2(CO2);
+	            Graphpanel_2.setSO2(SO2);
+	            Graphpanel_2.setFd(Fd);
+	            Graphpanel_2.setUd(Ud);
+	            
 	            Graphpanel.repaint();
 	            Graphpanel_2.repaint();
 	            // 버튼 눌렀을떄 엉뚱한 패널 나오는거 방지
@@ -141,7 +156,8 @@ public class MainPanel extends JPanel {
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}           
+			}
+            
          }
 
 		private String String(JComboBox areaBox) {

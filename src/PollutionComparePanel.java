@@ -130,9 +130,9 @@ public class PollutionComparePanel extends JPanel {
 				
 				PollutionDB pollution = new PollutionDB();
 				poll_check.setDate(monthA, dateA);
-				rs_A = pollution.getPollutionDataWith(poll_check.getDate(), Area1);			
+				rs_A = pollution.getPollutionDataWith_St(poll_check.getDate(), Area1);			
 				poll_check.setDate(monthB, dateB);
-				rs_B = pollution.getPollutionDataWith(poll_check.getDate(), Area2);
+				rs_B = pollution.getPollutionDataWith_St(poll_check.getDate(), Area2);
 
 				try {
 					rs_A.next();

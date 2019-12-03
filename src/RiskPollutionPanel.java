@@ -102,7 +102,7 @@ public class RiskPollutionPanel extends JPanel {
 				Area = (String) riskBoxArea.getSelectedItem();
 
 				PollutionDB pollution = new PollutionDB();
-				rs = pollution.getPollutionDataWith(risk_check.getDate(), Area);
+				rs = pollution.getPollutionDataWith_St(risk_check.getDate(), Area);
 				
 				try {
 					rs.next();

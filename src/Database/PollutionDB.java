@@ -16,23 +16,7 @@ public class PollutionDB {
 	    connection=obj_DB_Connection.getConnection();
 	}
 	
-	public ResultSet getPollution(){
-		ResultSet rs=null;
-		try {
-			String query = "select * from pollution limit 10";
-			PreparedStatement ps=connection.prepareStatement(query);
-			rs=ps.executeQuery();			
-			while(rs.next()){
-				System.out.println(rs.getString("DATE"));
-		    }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	    return rs;
-	}
-	
-	public ResultSet getPollutionDataWith(String date, String place) {
+	public ResultSet getPollutionDataWith_St(String date, String place) {
 		ResultSet rs=null;
 		String query;
 		PreparedStatement ps;
@@ -46,7 +30,26 @@ public class PollutionDB {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return rs; 
+	}
+	
+	public ResultSet getPollutionDataWith_Pg(String date, String place) {
+		String range = Integer.toString((Integer.parseInt(date) + 6));
+
+		ResultSet rs=null;
+		String query;
+		PreparedStatement ps;
+		try {
+			query = "SELECT * FROM pollution WHERE (DATE BETWEEN ? AND ?) AND PLACE=?";
+			ps = connection.prepareStatement(query);
+			ps.setString(1, date);
+			ps.setString(2, range);
+			ps.setString(3, place);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return rs; 
 	}
 }
